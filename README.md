@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +69,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+=======
+**CoinFlow** is a budgeting and financial education app designed for teens and young adults. It helps you manage your money, track expenses, set savings goals, and learn basic financial skills.
+
+## Features
+- **Budget Templates** – Track your expenses for things like rent, food, and phone bills.
+- **Expense Graphs** – Visualize where your money is going.
+- **Finance 101** – Learn the basics about credit scores, saving money, and more.
+- **Savings Challenges** – Take on fun challenges to save money.
+- **Reminders** – Get notified to track or save money.
+
+Make sure you have the following installed:
+- **Node.js** (v18+ recommended):
+- **npm** (usually installed with Node)
+- **VS Code** or any text editor you prefer
+>>>>>>> f6cd68462b2d686b270e554fddb83cbf29eea6ee
