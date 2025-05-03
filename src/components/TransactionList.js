@@ -1,32 +1,20 @@
 import React from 'react';
-import './TransactionList.css';
+import { useBudget } from '../context/BudgetContext';  // Corrected import path
 
-function TransactionList({ transactions }) {
-    return (
-        <div className="transaction-list">
-            <h2>Recent Transactions</h2>
-            {transactions.length === 0 ? (
-                <p className="no-transactions">No transactions available.</p>
-            ) : (
-                <ul>
-                    {transactions.map((tx, index) => (
-                        <li key={index} className="transaction-item">
-                        <div className="transaction-info">
-                          <span className="transaction-description">{tx.description}</span>
-                          <span className="transaction-date">{tx.date}</span>
-                        </div>
-                        <div
-                            className={`transaction-amount ${
-                                tx.amount < 0 ? 'negative' : 'positive'
-                              }`}
-                            > {tx.amount < 0 ? '-' : '+'}${Math.abs(tx.amount).toFixed(2)}
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                );
-              }
-              
-              export default TransactionList;
+const TransactionList = () => {
+  const { transactions, deleteTransaction } = useBudget();
+
+  return (
+    <div>
+      <h2>Transaction List</h2>
+      {transactions.map((transaction) => (
+        <div key={transaction.id}>
+          <p>{transaction.text}: ${transaction.amount}</p>
+          <button onClick={() => deleteTransaction(transaction.id)}>Delete</button>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default TransactionList;

@@ -1,32 +1,21 @@
-import React from "react";
-import './BudgetSummary.css';
+import React, { useContext } from 'react';
+import { BudgetContext } from '../context/BudgetContext';
 
-function BudgetSummary({ transactions }) {
-    const amounts = transactions.map(transaction => transaction.amount);
-    const income = amounts
-        .filter(amount => amount > 0)
-        .reduce((acc, amount) => (acc + amount), 0)
-        .toFixed(2);
-    const expense = amounts
-        .filter(amount => amount < 0)
-        .reduce((acc, amount) => (acc + amount), 0)
-        .toFixed(2);
-    const total = (income - Math.abs(expenses)).toFixed(2);
-    return (
-        <div className="budget-summary">
-      <div className="summary-item">
-        <h3>Total</h3>
-        <p className="total">${total}</p>
-      </div>
-      <div className="summary-item">
-        <h3>Income</h3>
-        <p className="income">+${income}</p>
-      </div>
-      <div className="summary-item">
-        <h3>Expenses</h3>
-        <p className="expenses">-${Math.abs(expenses)}</p>
+const BudgetSummary = () => {
+  const { budget, expenses } = useContext(BudgetContext);
+
+  const totalExpenses = expenses.reduce((total, expense) => total + expense.amount, 0);
+
+  return (
+    <div className="card">
+      <div className="card-header">Budget Summary</div>
+      <div className="card-body">
+        <p>Total Budget: ${budget}</p>
+        <p>Total Expenses: ${totalExpenses}</p>
+        <p>Remaining Budget: ${budget - totalExpenses}</p>
       </div>
     </div>
   );
-}
+};
+
 export default BudgetSummary;
