@@ -1,34 +1,52 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Dashboard from './pages/Dashboard';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Home from './pages/Home';
 import BudgetPlanner from './pages/BudgetPlanner';
-import Learn from './pages/Learn';
-import NotFound from './pages/NotFound';
-import { BudgetProvider } from './context/BudgetContext';
-import ErrorBoundary from './components/ErrorBoundary'; // Import ErrorBoundary
-import './styles/App.css';
-import './styles/theme.css';
+import Settings from './pages/Settings';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import './App.css';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
-    <BudgetProvider>
-      <Router>
-        <ErrorBoundary>
-          <div className="app-container">
-            <Navbar />
-            <main className="main-content">
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/planner" element={<BudgetPlanner />} />
-                <Route path="/learn" element={<Learn />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </main>
+    <Router>
+      <div className="App">
+        <header className="app-header">
+          <h1>Welcome to CoinFlow</h1>
+          <div className="nav-and-auth">
+            <nav>
+              <ul className="nav-links">
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/budget-planner">Budget Planner</Link></li>
+                <li><Link to="/settings">Settings</Link></li>
+              </ul>
+            </nav>
+            <div className="auth-buttons">
+              {isLoggedIn ? (
+                <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+              ) : (
+                <>
+                  <Link to="/login"><button>Login</button></Link>
+                  <Link to="/register"><button>Register</button></Link>
+                </>
+              )}
+            </div>
           </div>
-        </ErrorBoundary>
-      </Router>
-    </BudgetProvider>
+        </header>
+
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/budget-planner" element={<BudgetPlanner />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/login" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
+            <Route path="/register" element={<Register onRegister={() => setIsLoggedIn(true)} />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 

@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
+import './index.css';  // Global styles
 import App from './App';
-import { BudgetProvider } from './context/BudgetContext';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <BudgetProvider>
+ReactDOM.render(
+  <React.StrictMode>
     <App />
-  </BudgetProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
