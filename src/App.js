@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { auth } from './firebaseConfig';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import Home from './pages/Home';
 import BudgetPlanner from './pages/BudgetPlanner';
 import Settings from './pages/Settings';
@@ -9,6 +11,18 @@ import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsLoggedIn(!!user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    setIsLoggedIn(false);
+  };
 
   return (
     <Router>
@@ -25,7 +39,7 @@ function App() {
             </nav>
             <div className="auth-buttons">
               {isLoggedIn ? (
-                <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+                <button onClick={handleLogout}>Logout</button>
               ) : (
                 <>
                   <Link to="/login"><button>Login</button></Link>
@@ -41,8 +55,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/budget-planner" element={<BudgetPlanner />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/login" element={<Login onLogin={() => setIsLoggedIn(true)} />} />
-            <Route path="/register" element={<Register onRegister={() => setIsLoggedIn(true)} />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </main>
       </div>

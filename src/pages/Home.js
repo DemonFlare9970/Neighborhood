@@ -1,17 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Home.css';
+import React, { useState, useEffect } from 'react';
+import { db } from '../firebaseConfig';
+import { collection, getDocs } from 'firebase/firestore';
 
 function Home() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "users"));
+        const usersList = querySnapshot.docs.map(doc => doc.data());
+        setUsers(usersList);
+      } catch (error) {
+        console.error("Error fetching users: ", error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
   return (
-    <div className="home-container">
-      <h2>Home Page - CoinFlow</h2>
-      <p>Welcome to CoinFlow, your one-stop platform to manage your budget and finances with ease.</p>
-      <p>Start planning your budget or adjust your settings to suit your needs!</p>
-      <div className="home-buttons">
-        <Link to="/budget-planner" className="home-btn">Budget Planner</Link>
-        <Link to="/settings" className="home-btn">Settings</Link>
-      </div>
+    <div>
+      <h1>Users List</h1>
+      <ul>
+        {users.map((user, index) => (
+          <li key={index}>{user.name} - {user.email}</li>
+        ))}
+      </ul>
     </div>
   );
 }

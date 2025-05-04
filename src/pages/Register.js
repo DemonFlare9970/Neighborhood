@@ -1,27 +1,45 @@
 import React, { useState } from 'react';
-import './Auth.css';
+import { auth } from '../config/firebaseConfig'; // Correct relative import
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
-function Register({ onRegister }) {
+const Register = ({ onRegister }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleSubmit = e => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    onRegister(); // Fake register action
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      onRegister();
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
-    <div className="auth-container">
+    <div>
       <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="email" placeholder="Email" value={email}
-               onChange={e => setEmail(e.target.value)} required />
-        <input type="password" placeholder="Password" value={password}
-               onChange={e => setPassword(e.target.value)} required />
+      <form onSubmit={handleRegister}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <button type="submit">Register</button>
       </form>
     </div>
   );
-}
+};
 
 export default Register;
