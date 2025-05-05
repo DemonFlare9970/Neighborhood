@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
-import { auth } from '../config/firebaseConfig'; // Correct relative import
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { auth } from '../config/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
-const Register = ({ onRegister }) => {
+function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      onRegister();
-      navigate('/');
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      await sendEmailVerification(user);
+      alert('Verification email sent. Please check your inbox.');
+
+      await auth.signOut();
+      navigate('/login');
     } catch (error) {
-      console.error(error);
+      alert(error.message);
     }
   };
 
@@ -29,17 +33,21 @@ const Register = ({ onRegister }) => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
+        <br />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
+        <br />
         <button type="submit">Register</button>
       </form>
     </div>
   );
-};
+}
 
 export default Register;

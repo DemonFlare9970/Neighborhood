@@ -1,38 +1,55 @@
 import React, { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../config/firebaseConfig';
+import { useNavigate } from 'react-router-dom';
 
-function Register() {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
-  const handleRegister = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      alert("Registered successfully!");
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      if (!user.emailVerified) {
+        alert('Please verify your email before logging in.');
+        await auth.signOut();
+        return;
+      }
+
+      navigate('/');
     } catch (error) {
-      alert("Error registering: " + error.message);
+      alert(error.message);
     }
   };
 
   return (
     <div>
-      <h2>Register</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleRegister}>Register</button>
+      <h2>Login</h2>
+      <form onSubmit={handleLogin}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <br />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <br />
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 }
 
-export default Register;
+export default Login;
