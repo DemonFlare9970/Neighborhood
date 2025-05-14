@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Neighborhood/static/css/main.337e98a5.css",
+    "main.js": "/Neighborhood/static/js/main.756488f5.js",
+    "index.html": "/Neighborhood/index.html",
+    "main.337e98a5.css.map": "/Neighborhood/static/css/main.337e98a5.css.map",
+    "main.756488f5.js.map": "/Neighborhood/static/js/main.756488f5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.337e98a5.css",
+    "static/js/main.756488f5.js"
+  ]
+}
