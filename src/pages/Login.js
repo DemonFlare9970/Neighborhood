@@ -1,56 +1,61 @@
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../config/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  const navigate = useNavigate(); // ✅ Inside the component
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  const [message, setMessage] = useState('');
 
-  const handleLogin = async (e) => {
+  async function handleLogin(e) {
     e.preventDefault();
+    setMessage('');
+
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+      const response = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-      if (!user.emailVerified) {
-        alert('Please verify your email before logging in.');
-        await auth.signOut();
-        return;
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage('Login successful!');
+        setTimeout(() => navigate('/'), 1000); // 👈 Go to Home page after 1 sec
+      } else {
+        setMessage(data.message || 'Login failed.');
       }
-
-      navigate('/');
-    } catch (error) {
-      alert(error.message);
+    } catch (err) {
+      setMessage('Server error. Please try again later.');
     }
-  };
+  }
 
   return (
-    <div>
+    <form onSubmit={handleLogin}>
       <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <br />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <br />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+      <input
+        type="email"
+        placeholder="Email"
+        required
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+      />
+      <br />
+      <input
+        type="password"
+        placeholder="Password"
+        required
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+      />
+      <br />
+      <button type="submit">Log In</button>
+      {message && <p>{message}</p>}
+    </form>
   );
 }
 
 export default Login;
-
