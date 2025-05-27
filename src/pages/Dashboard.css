@@ -1,0 +1,57 @@
+.dashboard {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+.dashboard-summary {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.dashboard-card {
+  background: #f7f7f7;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  flex: 1;
+}
+.dashboard-balance {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2e8b57;
+}
+.dashboard-section {
+  margin-bottom: 2rem;
+}
+.dashboard-transactions {
+  list-style: none;
+  padding: 0;
+}
+.dashboard-transactions li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+.income {
+  color: #2e8b57;
+}
+.expense {
+  color: #c0392b;
+}
+.dashboard-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.dashboard-link {
+  background: #2e8b57;
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.dashboard-link:hover {
+  background: #246b43;
+}

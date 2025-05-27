@@ -54,7 +54,7 @@
   "bugs": {
     "url": "https://github.com/DemonFlare9970/Neighborhood/issues"
   },
-  "homepage": "https://demonflare9970.github.io/Neighborhood",
+  "homepage": "https://demonflare9970.github.io/Neighborhood/",
   "devDependencies": {
     "gh-pages": "^6.3.0",
     "react-app-rewired": "^2.2.1"

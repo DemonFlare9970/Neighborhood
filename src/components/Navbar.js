@@ -1,9 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function NavBar() {
-  const navigate = useNavigate();
-
   return (
     <header style={{
       backgroundColor: '#2ecc71',
@@ -16,16 +14,35 @@ function NavBar() {
     }}>
       <div
         style={{ fontWeight: '700', fontSize: '1.8rem', cursor: 'pointer' }}
-        onClick={() => navigate('/')}
         tabIndex={0}
-        onKeyPress={(e) => { if (e.key === 'Enter') navigate('/'); }}
         aria-label="Go to homepage"
+        onClick={() => window.location.href = '/'}
       >
         CoinFlow
       </div>
+      <nav>
+        <NavLink to="/dashboard" style={navBtnStyle}>Dashboard</NavLink>
+        <NavLink to="/transactions" style={navBtnStyle}>Transactions</NavLink>
+        <NavLink to="/budgets" style={navBtnStyle}>Budgets</NavLink>
+        <NavLink to="/goals" style={navBtnStyle}>Savings Goals</NavLink>
+        <NavLink to="/education" style={navBtnStyle}>Education</NavLink>
+        <NavLink to="/settings" style={navBtnStyle}>Settings</NavLink>
+      </nav>
     </header>
   );
 }
 
-export default NavBar;
+const navBtnStyle = {
+  background: 'transparent',
+  border: 'none',
+  color: 'white',
+  fontWeight: 500,
+  fontSize: '1rem',
+  marginLeft: '1.2rem',
+  cursor: 'pointer',
+  outline: 'none',
+  textDecoration: 'none',
+  transition: 'color 0.2s',
+};
 
+export default NavBar;

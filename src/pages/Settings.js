@@ -1,31 +1,78 @@
-import React, { useState } from 'react';
-import './settings.css';  // <-- assumes settings.css is in the same folder as Settings.js
+import React, { useState, useEffect } from 'react';
+import './Settings.css';
 
 function Settings() {
-  const [username, setUsername] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const [email, setEmail] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [currency, setCurrency] = useState('USD');
+  const [parentalControls, setParentalControls] = useState(false);
+  const [financialTips, setFinancialTips] = useState(true);
   const [darkMode, setDarkMode] = useState(false);
   const [notifications, setNotifications] = useState(true);
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
+
+  // Load settings from localStorage on mount
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem('userSettings'));
+    if (saved) {
+      setDisplayName(saved.displayName || '');
+      setEmail(saved.email || '');
+      setCurrency(saved.currency || 'USD');
+      setParentalControls(saved.parentalControls || false);
+      setFinancialTips(saved.financialTips !== undefined ? saved.financialTips : true);
+      setDarkMode(saved.darkMode || false);
+      setNotifications(saved.notifications !== undefined ? saved.notifications : true);
+    }
+  }, []);
+
+  // Apply dark mode to body
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [darkMode]);
 
   function handleSave(e) {
     e.preventDefault();
-    if (newPassword !== confirmPassword) {
+    if (newPassword && newPassword !== confirmPassword) {
       setMessage('Passwords do not match.');
       return;
     }
-    setMessage('Settings saved successfully!');
-    // Put actual save logic here
+    localStorage.setItem(
+      'userSettings',
+      JSON.stringify({
+        displayName,
+        email,
+        currency,
+        parentalControls,
+        financialTips,
+        darkMode,
+        notifications,
+      })
+    );
+    setMessage('Settings saved!');
+    setNewPassword('');
+    setConfirmPassword('');
   }
 
   function handleDelete() {
     if (window.confirm('Are you sure you want to delete your account? This action is irreversible.')) {
-      // Put actual delete logic here
+      localStorage.removeItem('userSettings');
+      setDisplayName('');
+      setEmail('');
+      setCurrency('USD');
+      setParentalControls(false);
+      setFinancialTips(true);
+      setDarkMode(false);
+      setNotifications(true);
+      setNewPassword('');
+      setConfirmPassword('');
       setMessage('Account deleted.');
-      localStorage.removeItem('user');
-      // You can redirect user as needed here
+      document.body.classList.remove('dark-mode');
     }
   }
 
@@ -34,12 +81,12 @@ function Settings() {
       <form className="settings-form" onSubmit={handleSave}>
         <h2>Settings</h2>
         <label>
-          Username:
+          Display Name:
           <input
             type="text"
-            placeholder="Your username"
-            value={username}
-            onChange={e => setUsername(e.target.value)}
+            placeholder="Your name"
+            value={displayName}
+            onChange={e => setDisplayName(e.target.value)}
           />
         </label>
 
@@ -51,6 +98,35 @@ function Settings() {
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
+        </label>
+
+        <label>
+          Preferred Currency:
+          <select value={currency} onChange={e => setCurrency(e.target.value)}>
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="CAD">CAD (C$)</option>
+            <option value="AUD">AUD (A$)</option>
+          </select>
+        </label>
+
+        <label className="checkbox-label">
+          <input
+            type="checkbox"
+            checked={parentalControls}
+            onChange={e => setParentalControls(e.target.checked)}
+          />
+          Enable Parental Controls
+        </label>
+
+        <label className="checkbox-label">
+          <input
+            type="checkbox"
+            checked={financialTips}
+            onChange={e => setFinancialTips(e.target.checked)}
+          />
+          Receive Financial Tips & Challenges
         </label>
 
         <label>

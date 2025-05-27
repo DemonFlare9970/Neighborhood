@@ -6,48 +6,64 @@ const Home = () => {
       <section className="hero">
         <h1>Welcome to CoinFlow</h1>
         <p className="subtitle">
-          Your seamless and powerful cryptocurrency dashboard. Track, manage, and grow your portfolio effortlessly.
+          Budgeting and financial education made easy for teens and young adults. Take control of your money, track your spending, set savings goals, and build smart financial habits!
         </p>
         <button
           className="cta-button"
-          onClick={() => alert('Feature coming soon!')}
+          onClick={() => window.location.href = '/dashboard'}
         >
-          Get Started
+          Go to Dashboard
         </button>
       </section>
 
       <section className="features">
         <div className="feature-card">
-          <div className="feature-icon" role="img" aria-label="chart">📈</div>
-          <h3 className="feature-title">Real-Time Analytics</h3>
+          <div className="feature-icon" role="img" aria-label="budget">💸</div>
+          <h3 className="feature-title">Expense Tracking</h3>
           <p className="feature-description">
-            Stay ahead with live crypto prices, charts, and market insights.
+            Log your spending and income, see where your money goes, and make smarter choices.
           </p>
         </div>
 
         <div className="feature-card">
-          <div className="feature-icon" role="img" aria-label="wallet">💼</div>
-          <h3 className="feature-title">Portfolio Management</h3>
+          <div className="feature-icon" role="img" aria-label="goal">🎯</div>
+          <h3 className="feature-title">Savings Goals</h3>
           <p className="feature-description">
-            Easily organize and monitor your investments in one place.
+            Set goals for things you want and watch your progress as you save.
           </p>
         </div>
 
         <div className="feature-card">
-          <div className="feature-icon" role="img" aria-label="security">🔒</div>
-          <h3 className="feature-title">Secure & Private</h3>
+          <div className="feature-icon" role="img" aria-label="budget">📊</div>
+          <h3 className="feature-title">Budgets</h3>
           <p className="feature-description">
-            Your data stays safe with industry-grade encryption and privacy.
+            Create budgets for categories like food, fun, and more. Stay on track and avoid overspending.
+          </p>
+        </div>
+
+        <div className="feature-card">
+          <div className="feature-icon" role="img" aria-label="education">📚</div>
+          <h3 className="feature-title">Financial Education</h3>
+          <p className="feature-description">
+            Learn money skills with tips, articles, and challenges designed for you.
+          </p>
+        </div>
+
+        <div className="feature-card">
+          <div className="feature-icon" role="img" aria-label="parental">👨‍👩‍👧‍👦</div>
+          <h3 className="feature-title">Parental Controls</h3>
+          <p className="feature-description">
+            Optional controls to help parents guide and support healthy money habits.
           </p>
         </div>
       </section>
 
       <section className="cta-section">
-        <h2>Ready to take control of your crypto journey?</h2>
-        <p>Join thousands of users who trust CoinFlow every day.</p>
+        <h2>Start your journey to financial confidence!</h2>
+        <p>Join thousands of young people building a brighter financial future with CoinFlow.</p>
         <button
           className="cta-button"
-          onClick={() => alert('Signup coming soon!')}
+          onClick={() => window.location.href = '/dashboard'}
         >
           Get Started Now
         </button>
