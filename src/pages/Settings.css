@@ -1,0 +1,89 @@
+.settings-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.settings-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #2ecc71;
+  text-align: center;
+}
+
+.settings-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #333;
+}
+
+.settings-form input[type="text"],
+.settings-form input[type="email"],
+.settings-form input[type="password"] {
+  width: 100%;
+  padding: 0.4rem 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.buttons-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.btn-green {
+  background-color: #2ecc71;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  width: 48%;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-green:hover {
+  background-color: #27ae60;
+}
+
+.btn-red {
+  background-color: #e74c3c;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  width: 48%;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-red:hover {
+  background-color: #c0392b;
+}
+
+.message {
+  margin-top: 1rem;
+  font-weight: 700;
+  text-align: center;
+  color: #e74c3c;
+}

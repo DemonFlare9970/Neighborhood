@@ -1,71 +1,24 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f9f9f9;
-}
-
-.App {
-  text-align: center;
-}
-
-.app-header {
-  background-color: #2ecc71;
-  padding: 1.5rem 2rem;
-  color: white;
-  position: relative;
-}
-
-.nav-and-auth {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.nav-links {
-  list-style: none;
   padding: 0;
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  margin: 0;
+  background-color: #f7faf6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.nav-links a {
+header {
+  background-color: #2ecc71;
+  padding: 1rem 2rem;
   color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.1rem;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #dfffe6;
-}
-
-.auth-buttons {
   display: flex;
-  gap: 0.8rem;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-.auth-buttons button {
-  background-color: white;
-  color: #2ecc71;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+header .logo {
+  font-weight: 700;
+  font-size: 1.8rem;
   cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease;
 }
 
-.auth-buttons button:hover {
-  background-color: #27ae60;
-  color: white;
-}
-
-/* Page main content */
-main {
-  padding: 3rem;
-}
 

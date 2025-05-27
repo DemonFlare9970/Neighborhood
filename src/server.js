@@ -1,22 +1,28 @@
+
 const express = require('express');
 const mongoose = require('mongoose');
-const authRoutes = require('./routes/authRoutes'); // Importing routes
-const userRoutes = require('./routes/userRoutes'); // Importing user routes
-const protect = require('./middleware/auth'); // Importing auth middleware
+const cors = require('cors');
+const AuthRoutes = require('./backend/routes/authRoutes');
+const UserRoutes = require('./backend/routes/User');
 
 const app = express();
-const port = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(express.json()); // To parse JSON requests
-app.use('/api/auth', authRoutes); // Routes for authentication
-app.use('/api/user', protect, userRoutes); // Protected user route
+app.use(cors());
+app.use(express.json());
 
-// MongoDB connection
-mongoose.connect('mongodb://localhost:27017/coinflow', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+const mongoURI = 'your_mongo_connection_string_here';
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB Atlas connected'))
+.catch(err => console.log('MongoDB connection error:', err));
+
+app.use('/api/auth', AuthRoutes);
+app.use('/api/user', UserRoutes);
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
