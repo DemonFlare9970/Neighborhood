@@ -1,9 +1,7 @@
-
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const AuthRoutes = require('./backend/routes/authRoutes');
-const UserRoutes = require('./backend/routes/User');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -21,7 +19,6 @@ mongoose.connect(mongoURI, {
 .catch(err => console.log('MongoDB connection error:', err));
 
 app.use('/api/auth', AuthRoutes);
-app.use('/api/user', UserRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
