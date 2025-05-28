@@ -1,0 +1,129 @@
+/* Transaction.css - Stylish and modern for transaction page */
+
+.transactions-container {
+  max-width: 600px;
+  margin: 2.5rem auto;
+  padding: 2rem 1.5rem;
+  background: #f7f7f7;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(46,204,113,0.08);
+}
+
+.transactions-container h2 {
+  color: #27ae60;
+  font-size: 2.1rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
+}
+
+.transactions-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.transactions-form input,
+.transactions-form select {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #b2f2d6;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.transactions-form input:focus,
+.transactions-form select:focus {
+  border: 1.5px solid #27ae60;
+}
+
+.transactions-form button[type="submit"] {
+  background: linear-gradient(90deg, #2ecc71 60%, #27ae60 100%);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.transactions-form button[type="submit"]:hover {
+  background: linear-gradient(90deg, #27ae60 60%, #2ecc71 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.transactions-list {
+  list-style: none;
+  padding: 0;
+}
+
+.transactions-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #e0e0e0;
+  margin-bottom: 12px;
+  padding: 12px 16px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.transactions-list li:hover {
+  box-shadow: 0 6px 18px #b2f2d6;
+  transform: translateY(-2px) scale(1.01);
+}
+
+.transactions-list strong {
+  color: #222;
+  font-weight: 700;
+}
+
+.transactions-list span {
+  font-size: 1.1rem;
+}
+
+.transactions-list .income {
+  color: #2e8b57;
+  font-weight: 700;
+}
+
+.transactions-list .expense {
+  color: #c0392b;
+  font-weight: 700;
+}
+
+.transactions-list button {
+  background: none;
+  border: none;
+  color: #c0392b;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 12px;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.transactions-list button:hover {
+  color: #a93226;
+}
+
+@media (max-width: 700px) {
+  .transactions-container {
+    padding: 1rem 0.2rem;
+  }
+  .transactions-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .transactions-list li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 10px 8px;
+  }
+}

@@ -8,6 +8,7 @@ import SavingsGoals from './pages/SavingGoals';
 import Education from './pages/Education';
 import Settings from './pages/Settings';
 import NavBar from './components/NavBar';
+import BudgetPlanner from './pages/BudgetPlanner';
 
 function App() {
   return (
@@ -21,9 +22,11 @@ function App() {
         <Route path="/goals" element={<SavingsGoals />} />
         <Route path="/education" element={<Education />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/budget-planner" element={<BudgetPlanner />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
+

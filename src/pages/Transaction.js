@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Transaction.css';
 
 function Transactions() {
   const [transactions, setTransactions] = useState(() =>
@@ -44,28 +45,26 @@ function Transactions() {
   }
 
   return (
-    <div style={{ maxWidth: 600, margin: '0 auto', padding: '2rem' }}>
+    <div className="transactions-container">
       <h2>Transactions</h2>
-      <form onSubmit={addTransaction} style={{ marginBottom: '2rem' }}>
+      <form onSubmit={addTransaction} className="transactions-form">
         <input
           type="text"
           placeholder="Description"
           value={desc}
           onChange={e => setDesc(e.target.value)}
-          style={{ marginRight: 8 }}
         />
         <input
           type="number"
           placeholder="Amount"
           value={amount}
           onChange={e => setAmount(e.target.value)}
-          style={{ marginRight: 8, width: 100 }}
         />
-        <select value={type} onChange={e => setType(e.target.value)} style={{ marginRight: 8 }}>
+        <select value={type} onChange={e => setType(e.target.value)}>
           <option value="expense">Expense</option>
           <option value="income">Income</option>
         </select>
-        <select value={category} onChange={e => setCategory(e.target.value)} style={{ marginRight: 8 }}>
+        <select value={category} onChange={e => setCategory(e.target.value)}>
           <option>General</option>
           <option>Food</option>
           <option>Transport</option>
@@ -79,18 +78,18 @@ function Transactions() {
       {transactions.length === 0 ? (
         <p>No transactions yet.</p>
       ) : (
-        <ul style={{ listStyle: 'none', padding: 0 }}>
+        <ul className="transactions-list">
           {transactions.slice().reverse().map(tx => (
-            <li key={tx.id} style={{ marginBottom: 12, background: '#f7f7f7', borderRadius: 8, padding: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <li key={tx.id}>
               <div>
                 <strong>{tx.desc}</strong> <span style={{ color: '#888' }}>({tx.category})</span>
                 <div style={{ fontSize: 12, color: '#888' }}>{tx.date}</div>
               </div>
               <div>
-                <span style={{ color: tx.type === 'income' ? '#2e8b57' : '#c0392b', fontWeight: 600 }}>
+                <span className={tx.type === 'income' ? 'income' : 'expense'}>
                   {tx.type === 'income' ? '+' : '-'}${tx.amount}
                 </span>
-                <button onClick={() => deleteTransaction(tx.id)} style={{ marginLeft: 12, color: '#c0392b', background: 'none', border: 'none', cursor: 'pointer' }}>
+                <button onClick={() => deleteTransaction(tx.id)}>
                   Delete
                 </button>
               </div>

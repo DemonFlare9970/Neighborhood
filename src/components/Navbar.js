@@ -16,7 +16,7 @@ function NavBar() {
         style={{ fontWeight: '700', fontSize: '1.8rem', cursor: 'pointer' }}
         tabIndex={0}
         aria-label="Go to homepage"
-        onClick={() => window.location.href = '/'}
+        onClick={() => window.location.href = '/Neighborhood/'}
       >
         CoinFlow
       </div>
