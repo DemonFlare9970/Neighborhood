@@ -1,18 +1,18 @@
-/* Transaction.css - Stylish and modern for transaction page */
+/* Transaction.css - Consistent with Dashboard.css */
 
 .transactions-container {
-  max-width: 600px;
-  margin: 2.5rem auto;
-  padding: 2rem 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
   background: #f7f7f7;
-  border-radius: 16px;
+  border-radius: 10px;
   box-shadow: 0 6px 24px rgba(46,204,113,0.08);
 }
 
 .transactions-container h2 {
   color: #27ae60;
-  font-size: 2.1rem;
-  font-weight: 800;
+  font-size: 2rem;
+  font-weight: bold;
   margin-bottom: 1.2rem;
 }
 
@@ -40,18 +40,18 @@
 }
 
 .transactions-form button[type="submit"] {
-  background: linear-gradient(90deg, #2ecc71 60%, #27ae60 100%);
+  background: #2e8b57;
   color: #fff;
   font-weight: 700;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
   padding: 0.5rem 1.5rem;
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
 }
 
 .transactions-form button[type="submit"]:hover {
-  background: linear-gradient(90deg, #27ae60 60%, #2ecc71 100%);
+  background: #246b43;
   transform: translateY(-2px) scale(1.04);
 }
 
@@ -111,7 +111,7 @@
   color: #a93226;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .transactions-container {
     padding: 1rem 0.2rem;
   }

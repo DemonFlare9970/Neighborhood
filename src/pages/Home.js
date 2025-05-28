@@ -10,7 +10,7 @@ const Home = () => {
         </p>
         <button
           className="cta-button"
-          onClick={() => window.location.href = '/dashboard'}
+          onClick={() => window.location.href = '/Neighborhood/dashboard'}
         >
           Go to Dashboard
         </button>
@@ -63,7 +63,7 @@ const Home = () => {
         <p>Join thousands of young people building a brighter financial future with CoinFlow.</p>
         <button
           className="cta-button"
-          onClick={() => window.location.href = '/dashboard'}
+          onClick={() => window.location.href = '/Neighborhood/dashboard'}
         >
           Get Started Now
         </button>

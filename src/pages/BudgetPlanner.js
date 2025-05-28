@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './BudgetPlanner.css';
 
 function BudgetPlanner() {
   const [income, setIncome] = useState(() =>
@@ -73,7 +74,7 @@ function BudgetPlanner() {
   }
 
   return (
-    <div style={{ maxWidth: 650, margin: '0 auto', padding: '2rem' }}>
+    <div className="budget-planner-container">
       <h2>Budget Planner</h2>
       <p>Plan your monthly budget, track your categories, and see how much you have left to allocate.</p>
       <div style={{ margin: '2rem 0', background: '#f7f7f7', borderRadius: 10, padding: 20 }}>
