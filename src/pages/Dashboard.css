@@ -1,26 +1,113 @@
-.dashboard {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 2rem;
+/* dashboard.css - Modern, vibrant, home.css-inspired */
+body {
+  background: linear-gradient(120deg, #e0ffe8 0%, #f7f7f7 100%);
+  min-height: 100vh;
 }
-.dashboard-summary {
+.dashboard-container {
+  max-width: 1100px;
+  margin: 3.5rem auto;
+  padding: 0 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+.dashboard-hero {
+  background: #ffffffcc;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(46, 204, 113, 0.10);
+  padding: 2.5rem 2rem 2rem 2rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+.dashboard-hero h1 {
+  color: #27ae60;
+  font-size: 2.7rem;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.dashboard-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.dashboard-summary-cards {
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
-  margin-bottom: 2rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
 }
 .dashboard-card {
-  background: #f7f7f7;
-  border-radius: 10px;
-  padding: 1rem 2rem;
-  flex: 1;
+  background: #ecf9f1;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(46, 204, 113, 0.10), 0 1.5px 6px rgba(0,0,0,0.04);
+  padding: 2rem 1.5rem;
+  min-width: 180px;
+  flex: 1 1 180px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.dashboard-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 16px 32px rgba(46, 204, 113, 0.13), 0 2px 8px rgba(0,0,0,0.06);
 }
 .dashboard-balance {
-  font-size: 2rem;
+  font-size: 2.1rem;
   font-weight: bold;
-  color: #2e8b57;
+  color: #2ecc71;
+}
+.dashboard-income {
+  color: #27ae60;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.dashboard-expense {
+  color: #c0392b;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.dashboard-budget {
+  color: #2980b9;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 .dashboard-section {
-  margin-bottom: 2rem;
+  margin-bottom: 2.2rem;
+}
+.dashboard-goal-progress {
+  margin-bottom: 1.5rem;
+}
+.dashboard-progress-bar-bg {
+  background: #e0e0e0;
+  border-radius: 8px;
+  height: 16px;
+  width: 100%;
+  margin: 10px 0 4px 0;
+}
+.dashboard-progress-bar {
+  background: linear-gradient(90deg, #2ecc71 60%, #27ae60 100%);
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.4s;
+}
+.dashboard-topcat {
+  background: #f7f7f7;
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  color: #2ecc71;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px #e0e0e0;
+  display: inline-block;
+}
+.dashboard-transactions-section {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #e0e0e0;
+  padding: 1.5rem 1.2rem;
 }
 .dashboard-transactions {
   list-style: none;
@@ -29,29 +116,79 @@
 .dashboard-transactions li {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #eee;
+  align-items: center;
+  background: #f7f7f7;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px 16px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.dashboard-transactions li:hover {
+  box-shadow: 0 6px 18px #b2f2d6;
+  transform: translateY(-2px) scale(1.01);
 }
 .income {
-  color: #2e8b57;
+  color: #27ae60;
+  font-weight: 700;
 }
 .expense {
   color: #c0392b;
+  font-weight: 700;
 }
-.dashboard-buttons {
+.dashboard-buttons, .dashboard-actions-section {
   display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+  justify-content: center;
 }
 .dashboard-link {
-  background: #2e8b57;
+  background: linear-gradient(90deg, #2ecc71 60%, #27ae60 100%);
   color: #fff;
-  padding: 0.5rem 1.2rem;
-  border-radius: 5px;
+  padding: 0.7rem 1.5rem;
+  border-radius: 30px;
   text-decoration: none;
-  font-weight: 500;
-  transition: background 0.2s;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  box-shadow: 0 2px 8px #e0e0e0;
+  transition: background 0.2s, box-shadow 0.2s;
 }
 .dashboard-link:hover {
-  background: #246b43;
+  background: linear-gradient(90deg, #27ae60 60%, #2ecc71 100%);
+  box-shadow: 0 4px 16px #b2f2d6;
+}
+.dashboard-tip-section {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+}
+.dashboard-tip-card {
+  background: #ecf9f1;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #b2f2d6;
+  padding: 1.2rem 2rem;
+  font-size: 1.1rem;
+  color: #222;
+  max-width: 400px;
+  text-align: center;
+}
+@media (max-width: 900px) {
+  .dashboard-container {
+    padding: 1rem 0.2rem;
+  }
+  .dashboard-summary-cards {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .dashboard-card {
+    min-width: 0;
+    padding: 1.2rem 0.7rem;
+  }
+  .dashboard-transactions-section {
+    padding: 1rem 0.5rem;
+  }
+  .dashboard-buttons, .dashboard-actions-section {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
 }

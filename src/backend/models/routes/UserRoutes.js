@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User'); // adjust path if needed
-const authMiddleware = require('../middleware/authMiddleware'); // optional for protected routes
+const User = require('../user'); // adjust path if needed
+const authMiddleware = require('../../../middleware/auth'); // optional for protected routes
 
 // Example protected profile route
 router.get('/profile', authMiddleware, async (req, res) => {

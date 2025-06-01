@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './SavingGoals.css';
 
 function SavingsGoals() {
   const [goals, setGoals] = useState(() =>
@@ -45,16 +46,40 @@ function SavingsGoals() {
     setGoals(goals.filter(goal => goal.id !== id));
   }
 
+  const totalTarget = goals.reduce((sum, g) => sum + g.target, 0);
+  const totalSaved = goals.reduce((sum, g) => sum + g.saved, 0);
+  const percentTotal = totalTarget ? Math.round((totalSaved / totalTarget) * 100) : 0;
+
   return (
-    <div className="goals-container" style={{ maxWidth: 600, margin: '0 auto', padding: '2rem' }}>
-      <h2>Savings Goals</h2>
-      <form onSubmit={addGoal} style={{ marginBottom: '2rem' }}>
+    <main className="goals-main-container">
+      <section className="goals-hero">
+        <h2>Savings Goals</h2>
+        <p>Set, track, and achieve your dreams! Visualize your progress and stay motivated.</p>
+      </section>
+      <div className="goals-summary">
+        <div>
+          <span className="goals-summary-label">Total Saved</span>
+          <span className="goals-summary-amount">${totalSaved.toFixed(2)}</span>
+        </div>
+        <div>
+          <span className="goals-summary-label">Total Target</span>
+          <span className="goals-summary-amount">${totalTarget.toFixed(2)}</span>
+        </div>
+        <div>
+          <span className="goals-summary-label">Progress</span>
+          <span className="goals-summary-percent">{percentTotal}%</span>
+        </div>
+      </div>
+      <div className="goals-progress-bar">
+        <div className="goals-progress-bar-inner" style={{ width: `${percentTotal}%` }} />
+      </div>
+      <form onSubmit={addGoal} className="goals-form">
         <input
           type="text"
           placeholder="Goal name (e.g. New Phone)"
           value={name}
           onChange={e => setName(e.target.value)}
-          style={{ marginRight: 8 }}
+          className="goals-input"
         />
         <input
           type="number"
@@ -62,7 +87,7 @@ function SavingsGoals() {
           value={target}
           onChange={e => setTarget(e.target.value)}
           min="1"
-          style={{ marginRight: 8, width: 120 }}
+          className="goals-input"
         />
         <input
           type="number"
@@ -70,52 +95,47 @@ function SavingsGoals() {
           value={saved}
           onChange={e => setSaved(e.target.value)}
           min="0"
-          style={{ marginRight: 8, width: 120 }}
+          className="goals-input"
         />
-        <button type="submit">Add Goal</button>
+        <button type="submit" className="goals-add-btn">Add Goal</button>
       </form>
-      {message && <div style={{ color: '#2e8b57', marginBottom: 10 }}>{message}</div>}
+      {message && <div className="goals-message">{message}</div>}
       {goals.length === 0 ? (
-        <p>No savings goals yet. Add one above!</p>
+        <p className="goals-empty">No savings goals yet. Add one above!</p>
       ) : (
-        <ul style={{ listStyle: 'none', padding: 0 }}>
+        <ul className="goals-list">
           {goals.map(goal => {
             const percent = Math.min(100, Math.round((goal.saved / goal.target) * 100));
             return (
-              <li key={goal.id} style={{ marginBottom: 24, background: '#f7f7f7', borderRadius: 8, padding: 16 }}>
-                <strong>{goal.name}</strong>
-                <div style={{ margin: '8px 0' }}>
+              <li key={goal.id} className="goals-list-item">
+                <div className="goals-list-header">
+                  <strong className="goals-list-title">{goal.name}</strong>
+                  <button onClick={() => deleteGoal(goal.id)} className="goals-delete-btn">Delete</button>
+                </div>
+                <div className="goals-list-progress-row">
                   <input
                     type="number"
                     value={goal.saved}
                     min="0"
                     max={goal.target}
                     onChange={e => updateSaved(goal.id, e.target.value)}
-                    style={{ width: 100, marginRight: 8 }}
+                    className="goals-saved-input"
                   />
-                  / ${goal.target}
-                  <span style={{ marginLeft: 16 }}>{percent}% saved</span>
+                  <span className="goals-list-target">/ ${goal.target}</span>
+                  <span className="goals-list-percent">{percent}% saved</span>
                 </div>
-                <div style={{ background: '#e0e0e0', borderRadius: 4, height: 10, marginBottom: 8 }}>
+                <div className="goals-list-progress-bar">
                   <div
-                    style={{
-                      width: `${percent}%`,
-                      background: '#2e8b57',
-                      height: '100%',
-                      borderRadius: 4,
-                      transition: 'width 0.3s'
-                    }}
+                    className="goals-list-progress-bar-inner"
+                    style={{ width: `${percent}%` }}
                   />
                 </div>
-                <button onClick={() => deleteGoal(goal.id)} style={{ color: '#c0392b', background: 'none', border: 'none', cursor: 'pointer' }}>
-                  Delete
-                </button>
               </li>
             );
           })}
         </ul>
       )}
-    </div>
+    </main>
   );
 }
 
