@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 // Register
 router.post('/register', async (req, res) => {
+  console.log('Register endpoint hit:', req.body); // Debug log
   try {
     const { username, email, password } = req.body;
     if (!username || !email || !password) return res.status(400).json({ message: 'All fields required.' });
@@ -14,6 +15,7 @@ router.post('/register', async (req, res) => {
     await user.save();
     res.status(201).json({ message: 'User registered successfully.' });
   } catch (err) {
+    console.error('Register error:', err); // Debug log
     res.status(500).json({ message: 'Server error.' });
   }
 });

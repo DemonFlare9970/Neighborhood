@@ -11,8 +11,6 @@ const { OAuth2Client } = require('google-auth-library');
 
 const AuthRoutes = require('./backend/routes/authRoutes');
 const UserRoutes = require('./backend/models/routes/UserRoutes');
-// Example: const TransactionRoutes = require('./backend/models/routes/TransactionRoutes');
-// Example: const BudgetRoutes = require('./backend/models/routes/BudgetRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -54,29 +52,12 @@ mongoose.connect(mongoURI, {
 
 app.use('/api/auth', AuthRoutes);
 app.use('/api/user', UserRoutes);
-// Example: app.use('/api/transactions', TransactionRoutes);
-// Example: app.use('/api/budgets', BudgetRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date() }));
 
 app.use(express.static(path.join(__dirname, '../build')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../build', 'index.html'));
-});
-
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(err.status || 500).json({ message: err.message || 'Server error' });
-});
-
-process.on('SIGINT', () => {
-  mongoose.connection.close(() => {
-    console.log('MongoDB connection closed due to app termination');
-    process.exit(0);
-  });
-});
-
+// Request logging middleware
 app.use((req, res, next) => {
   const start = Date.now();
   res.on('finish', () => {
@@ -86,19 +67,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// const rateLimit = require('express-rate-limit');
-// const limiter = rateLimit({
-//   windowMs: 15 * 60 * 1000,
-//   max: 100,
-// });
-// app.use(limiter);
-
-function requestLogger(req, res, next) {
-  console.log(`Request: ${req.method} ${req.url}`);
-  next();
-}
-app.use(requestLogger);
-
+// Dummy data routes
 app.get('/api/dummy/transactions', (req, res) => {
   res.json([
     { id: 1, type: 'income', amount: 100, description: 'Allowance', date: '2025-05-01' },
@@ -144,15 +113,31 @@ app.post('/api/auth/google', async (req, res) => {
   }
 });
 
-app.use('/api/*', (req, res) => {
+// --- THE FOLLOWING MUST BE THE LAST ROUTES BEFORE process.on/app.listen ---
+
+// API 404 handler (must come after all API routes)
+app.use(/^\/api\//, (req, res) => {
   res.status(404).json({ message: 'API route not found' });
+});
+
+// Error handler (must come after all routes)
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500).json({ message: err.message || 'Server error' });
+});
+
+// Catch-all: serve React app for any non-API route
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
+});
+
+process.on('SIGINT', () => {
+  mongoose.connection.close(() => {
+    console.log('MongoDB connection closed due to app termination');
+    process.exit(0);
+  });
 });
 
 app.listen(PORT, () => {
   console.log(`CoinFlow server running on port ${PORT}`);
 });
-
-
-
-
-

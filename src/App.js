@@ -11,6 +11,7 @@ import CoinFlowNavbar from './components/CoinFlowNavbar';
 import BudgetPlanner from './pages/BudgetPlanner';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import AccountProfile from './pages/AccountProfile';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="budget-planner" element={<BudgetPlanner />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="account-profile" element={<AccountProfile />} />
       </Routes>
     </Router>
   );

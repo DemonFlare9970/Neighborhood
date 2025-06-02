@@ -1,0 +1,122 @@
+/* src/components/BadgesAndRewards.css */
+.badges-rewards-container {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+  padding: 2.5rem 2rem;
+  margin: 2rem auto;
+  max-width: 900px;
+}
+.badges-title, .rewards-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #3a3a7c;
+  font-weight: 700;
+}
+.badges-list, .rewards-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.badge-item, .reward-item {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(60,60,120,0.08);
+  padding: 1.2rem 1.5rem;
+  min-width: 180px;
+  flex: 1 1 220px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.15s;
+  position: relative;
+}
+.badge-item:hover, .reward-item:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 6px 24px rgba(60,60,120,0.16);
+}
+.badge-icon, .reward-icon {
+  font-size: 2.5rem;
+  margin-right: 1.1rem;
+  filter: drop-shadow(0 2px 6px #b3b3e6);
+}
+.badge-info, .reward-info {
+  display: flex;
+  flex-direction: column;
+}
+.badge-label, .reward-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #2a2a5c;
+}
+.badge-desc, .reward-desc {
+  font-size: 0.98rem;
+  color: #555;
+  margin-top: 0.2rem;
+}
+.badge-progress {
+  margin: 1.5rem 0 2.5rem 0;
+  background: #e6e9f0;
+  border-radius: 1rem;
+  height: 1.2rem;
+  overflow: hidden;
+  position: relative;
+}
+.badge-progress-bar {
+  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+  height: 100%;
+  border-radius: 1rem;
+  transition: width 0.5s;
+}
+.badge-progress-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 1px 4px #3a3a7c88;
+}
+.badge-history {
+  margin-top: 2.5rem;
+  background: #f7f8fa;
+  border-radius: 1rem;
+  padding: 1.2rem 1.5rem;
+  box-shadow: 0 1px 8px rgba(60,60,120,0.06);
+}
+.badge-history-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #3a3a7c;
+  margin-bottom: 0.7rem;
+}
+.badge-history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.badge-history-item {
+  font-size: 0.98rem;
+  color: #444;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+}
+.badge-history-icon {
+  margin-right: 0.6rem;
+  font-size: 1.1rem;
+}
+.badge-locked {
+  opacity: 0.5;
+  filter: grayscale(0.7);
+  position: relative;
+}
+.badge-locked::after {
+  content: '🔒';
+  position: absolute;
+  right: 0.7rem;
+  top: 0.7rem;
+  font-size: 1.2rem;
+  color: #888;
+}

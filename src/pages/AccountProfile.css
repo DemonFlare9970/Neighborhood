@@ -1,0 +1,88 @@
+/* src/pages/AccountProfile.css */
+.account-profile-container {
+  max-width: 900px;
+  margin: 2.5rem auto;
+  background: #fff;
+  border-radius: 2rem;
+  box-shadow: 0 4px 32px rgba(60,60,120,0.10);
+  padding: 2.5rem 2rem 2rem 2rem;
+}
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  margin-bottom: 1.5rem;
+}
+.profile-avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 4px solid #6a82fb;
+  background: #f5f7fa;
+  box-shadow: 0 2px 12px #b3b3e633;
+}
+.profile-info {
+  flex: 1;
+}
+.profile-name {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #3a3a7c;
+  margin-bottom: 0.2rem;
+}
+.profile-email {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 0.2rem;
+}
+.profile-joined {
+  font-size: 0.98rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+.profile-level {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #6a82fb;
+  margin-bottom: 0.3rem;
+}
+.profile-level-label {
+  margin-right: 0.5rem;
+}
+.profile-level-title {
+  color: #fc5c7d;
+}
+.profile-progress-bar-outer {
+  background: #e6e9f0;
+  border-radius: 1rem;
+  height: 1.1rem;
+  width: 220px;
+  margin-top: 0.2rem;
+  overflow: hidden;
+}
+.profile-progress-bar-inner {
+  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+  height: 100%;
+  border-radius: 1rem;
+  transition: width 0.5s;
+}
+.profile-bio {
+  font-size: 1.08rem;
+  color: #444;
+  margin-bottom: 2.2rem;
+  margin-left: 0.2rem;
+}
+@media (max-width: 700px) {
+  .account-profile-container {
+    padding: 1.2rem 0.5rem;
+  }
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+  }
+  .profile-progress-bar-outer {
+    width: 100%;
+    min-width: 120px;
+  }
+}

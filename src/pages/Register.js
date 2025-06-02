@@ -19,7 +19,12 @@ function Register() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password })
       });
-      const data = await res.json();
+      let data;
+      try {
+        data = await res.json();
+      } catch (jsonErr) {
+        throw new Error('Unexpected server response. Please try again later.');
+      }
       if (!res.ok) throw new Error(data.message || 'Registration failed');
       setSuccess('Registration successful! You can now log in.');
       setTimeout(() => navigate('/login'), 1200);
