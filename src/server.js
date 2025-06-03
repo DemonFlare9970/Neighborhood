@@ -10,7 +10,6 @@ const path = require('path');
 const { OAuth2Client } = require('google-auth-library');
 
 const AuthRoutes = require('./backend/routes/authRoutes');
-const UserRoutes = require('./backend/models/routes/UserRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -51,7 +50,6 @@ mongoose.connect(mongoURI, {
 });
 
 app.use('/api/auth', AuthRoutes);
-app.use('/api/user', UserRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok', time: new Date() }));
 
@@ -127,7 +125,7 @@ app.use((err, req, res, next) => {
 });
 
 // Catch-all: serve React app for any non-API route
-app.get('*', (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
@@ -141,3 +139,4 @@ process.on('SIGINT', () => {
 app.listen(PORT, () => {
   console.log(`CoinFlow server running on port ${PORT}`);
 });
+
