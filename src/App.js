@@ -12,6 +12,8 @@ import BudgetPlanner from './pages/BudgetPlanner';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import AccountProfile from './pages/AccountProfile';
+import CommunityChallenges from './components/CommunityChallenges';
+import Customize from './pages/Customize';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="account-profile" element={<AccountProfile />} />
+        <Route path="community-challenges" element={<CommunityChallenges />} />
+        <Route path="customize" element={<Customize />} />
       </Routes>
     </Router>
   );

@@ -72,6 +72,115 @@
   margin-bottom: 2.2rem;
   margin-left: 0.2rem;
 }
+.profile-action-btn, .profile-edit-btn, .profile-logout-btn {
+  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.08rem;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 0.6rem 1.7rem;
+  margin: 0.5rem 0.7rem 0.5rem 0;
+  box-shadow: 0 2px 12px #b3b3e633;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  outline: none;
+  display: inline-block;
+}
+.profile-action-btn:hover, .profile-edit-btn:hover, .profile-logout-btn:hover,
+.profile-action-btn:focus, .profile-edit-btn:focus, .profile-logout-btn:focus {
+  background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+.profile-claim-btn, .profile-show-claimed-btn, .profile-history-btn {
+  background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 0.55rem 1.5rem;
+  margin: 0.4rem 0.7rem 0.4rem 0;
+  box-shadow: 0 2px 12px #38f9d733;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  outline: none;
+  display: inline-block;
+}
+.profile-claim-btn:hover, .profile-claim-btn:focus,
+.profile-show-claimed-btn:hover, .profile-show-claimed-btn:focus,
+.profile-history-btn:hover, .profile-history-btn:focus {
+  background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+.profile-show-claimed-btn {
+  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+}
+.profile-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem 1.5rem;
+  margin: 2rem 0 1.5rem 0.2rem;
+}
+.profile-badge {
+  background: #f5f7fa;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 12px #b3b3e633;
+  padding: 1.1rem 1.7rem;
+  font-size: 1.08rem;
+  color: #3a3a7c;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  border: 2px solid #e6e9f0;
+  transition: border 0.2s, background 0.2s;
+}
+.profile-badge.earned {
+  border: 2px solid #6a82fb;
+  background: #e6e9f0;
+  color: #6a82fb;
+}
+.profile-badge.locked {
+  opacity: 0.5;
+  filter: grayscale(0.7);
+}
+.profile-badges-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fc5c7d;
+  margin-bottom: 0.7rem;
+  margin-left: 0.2rem;
+}
+.profile-section-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #6a82fb;
+  margin: 1.5rem 0 0.7rem 0.2rem;
+}
+.profile-logout-btn {
+  margin-left: 0.2rem;
+  background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+}
+.profile-badge-history, .profile-claimed-rewards {
+  background: #f5f7fa;
+  border-radius: 1.1rem;
+  box-shadow: 0 2px 12px #b3b3e633;
+  padding: 1rem 1.5rem;
+  margin: 1.2rem 0 0.7rem 0.2rem;
+  color: #3a3a7c;
+  font-size: 1.04rem;
+  font-weight: 500;
+  border: 2px solid #e6e9f0;
+  transition: border 0.2s, background 0.2s;
+}
+.profile-badge-history-title, .profile-claimed-rewards-title {
+  font-size: 1.13rem;
+  font-weight: 700;
+  color: #43e97b;
+  margin-bottom: 0.5rem;
+  margin-left: 0.2rem;
+}
 @media (max-width: 700px) {
   .account-profile-container {
     padding: 1.2rem 0.5rem;
@@ -84,5 +193,21 @@
   .profile-progress-bar-outer {
     width: 100%;
     min-width: 120px;
+  }
+  .profile-badges {
+    gap: 0.7rem 0.7rem;
+    margin: 1.2rem 0 1rem 0.1rem;
+  }
+  .profile-badge {
+    padding: 0.7rem 1.1rem;
+    font-size: 0.98rem;
+  }
+  .profile-claim-btn, .profile-show-claimed-btn, .profile-history-btn {
+    padding: 0.45rem 1.1rem;
+    font-size: 0.98rem;
+  }
+  .profile-badge-history, .profile-claimed-rewards {
+    padding: 0.7rem 1rem;
+    font-size: 0.97rem;
   }
 }

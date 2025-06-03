@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <main className="home-container">
       <section className="hero">
@@ -18,58 +21,46 @@ const Home = () => {
             Log your spending and income, see where your money goes, and make smarter choices.
           </p>
         </div>
-
         <div className="feature-card">
           <div className="feature-icon" role="img" aria-label="goal">🎯</div>
           <h3 className="feature-title">Savings Goals</h3>
           <p className="feature-description">
-            Set goals for things you want and watch your progress as you save.
+            Set goals for things you want and watch your progress as you save. Visualize your journey with progress bars and celebrate every milestone!
           </p>
         </div>
-
         <div className="feature-card">
           <div className="feature-icon" role="img" aria-label="budget">📊</div>
           <h3 className="feature-title">Budgets</h3>
           <p className="feature-description">
-            Create budgets for categories like food, fun, and more. Stay on track and avoid overspending.
+            Create budgets for categories like food, fun, and more. Get smart suggestions, track your spending, and avoid overspending with real-time analytics.
           </p>
         </div>
-
         <div className="feature-card">
           <div className="feature-icon" role="img" aria-label="education">📚</div>
           <h3 className="feature-title">Financial Education</h3>
           <p className="feature-description">
-            Learn money skills with tips, articles, and challenges designed for you.
+            Learn money skills with tips, articles, quizzes, flashcards, and challenges designed for you. Explore a huge glossary and resource library!
           </p>
         </div>
-
         <div className="feature-card">
           <div className="feature-icon" role="img" aria-label="parental">👨‍👩‍👧‍👦</div>
           <h3 className="feature-title">Parental Controls</h3>
           <p className="feature-description">
-            Optional controls to help parents guide and support healthy money habits.
+            Optional controls to help parents guide and support healthy money habits. Set spending limits, approve goals, and monitor progress.
           </p>
         </div>
-
         <div className="feature-card">
           <div className="feature-icon" role="img" aria-label="analytics">📈</div>
           <h3 className="feature-title">Smart Analytics</h3>
           <p className="feature-description">
-            Visualize your spending trends, get personalized insights, and see your financial progress at a glance.
-          </p>
-        </div>
-        <div className="feature-card">
-          <div className="feature-icon" role="img" aria-label="community">🤝</div>
-          <h3 className="feature-title">Community Challenges</h3>
-          <p className="feature-description">
-            Join fun savings and budgeting challenges with friends or the CoinFlow community. Level up your money skills together!
+            Visualize your spending trends, get personalized insights, and see your financial progress at a glance. Unlock advanced charts and reports!
           </p>
         </div>
         <div className="feature-card">
           <div className="feature-icon" role="img" aria-label="rewards">🏆</div>
           <h3 className="feature-title">Rewards & Badges</h3>
           <p className="feature-description">
-            Earn badges and rewards for hitting savings goals, learning new skills, and building healthy habits.
+            Earn badges and rewards for hitting savings goals, learning new skills, and building healthy habits. View your collection and claim special prizes!
           </p>
           <button
             className="feature-action-btn"
@@ -80,12 +71,51 @@ const Home = () => {
           </button>
         </div>
         <div className="feature-card">
-          <div className="feature-icon" role="img" aria-label="news">📰</div>
-          <h3 className="feature-title">Financial News</h3>
+          <div className="feature-icon" role="img" aria-label="community">🤝</div>
+          <h3 className="feature-title">Community Challenges</h3>
           <p className="feature-description">
-            Stay up to date with bite-sized financial news and tips, curated just for you.
+            Join fun savings and budgeting challenges with friends or the CoinFlow community. Level up your money skills together! Compete on the leaderboard and earn XP.
+          </p>
+          <button
+            className="feature-action-btn"
+            onClick={() => window.location.href = '/Neighborhood/community-challenges'}
+            style={{marginTop: '0.7rem', background: '#ffb347', color: '#fff', border: 'none', borderRadius: '0.7rem', padding: '0.5rem 1.2rem', fontWeight: 600, cursor: 'pointer', fontSize: '1rem', boxShadow: '0 2px 8px #ffb34733'}}
+          >
+            View Community Challenges
+          </button>
+        </div>
+        <div className="feature-card">
+          <div className="feature-icon" role="img" aria-label="news">📰</div>
+          <h3 className="feature-title">Financial News Feed</h3>
+          <p className="feature-description">
+            Stay up to date with the latest financial news, tips, and trends. Get curated articles and updates right on your dashboard.
           </p>
         </div>
+        <div className="feature-card">
+          <div className="feature-icon" role="img" aria-label="customize">🎨</div>
+          <h3 className="feature-title">Customize Your Experience</h3>
+          <p className="feature-description">
+            Choose your theme, font size, and accessibility options. Make CoinFlow truly yours!
+          </p>
+          <button
+            className="feature-action-btn"
+            onClick={() => window.location.href = '/Neighborhood/customize'}
+            style={{marginTop: '0.7rem', background: '#00b894', color: '#fff', border: 'none', borderRadius: '0.7rem', padding: '0.5rem 1.2rem', fontWeight: 600, cursor: 'pointer', fontSize: '1rem', boxShadow: '0 2px 8px #00b89433'}}
+          >
+            Go to Customize
+          </button>
+        </div>
+      </section>
+      
+      <section className="home-news-feed">
+        <h2>Latest Financial News & Tips</h2>
+        <ul className="news-feed-list">
+          <li><a href="https://www.cnbc.com/personal-finance/" target="_blank" rel="noopener noreferrer">CNBC Personal Finance: How teens can start investing early</a></li>
+          <li><a href="https://www.nerdwallet.com/article/finance/financial-tips-for-teens" target="_blank" rel="noopener noreferrer">NerdWallet: 10 Smart Money Tips for Teens</a></li>
+          <li><a href="https://www.kiplinger.com/personal-finance/" target="_blank" rel="noopener noreferrer">Kiplinger: Best Budgeting Apps for Young Adults</a></li>
+          <li><a href="https://www.marketwatch.com/personal-finance" target="_blank" rel="noopener noreferrer">MarketWatch: How to Build Good Credit as a Teen</a></li>
+          <li><a href="https://www.investopedia.com/financial-education-for-teens-5181812" target="_blank" rel="noopener noreferrer">Investopedia: Financial Education for Teens</a></li>
+        </ul>
       </section>
 
       <section className="cta-section">
@@ -98,6 +128,14 @@ const Home = () => {
           Get Started Now
         </button>
       </section>
+
+      <button
+        className="profile-action-btn"
+        style={{ margin: '2rem auto 0 auto', display: 'block', fontSize: '1.15rem', padding: '0.8rem 2.2rem' }}
+        onClick={() => navigate('/community-challenges')}
+      >
+        🌟 Join Community Challenges
+      </button>
 
       <footer>
         &copy; {new Date().getFullYear()} CoinFlow. All rights reserved.

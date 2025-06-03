@@ -1,374 +1,193 @@
 import React, { useState, useEffect } from 'react';
 import './Settings.css';
 
+const defaultSettings = {
+  darkMode: false,
+  notifications: true,
+  emailUpdates: false,
+  currency: 'USD',
+  language: 'en',
+  privacy: 'standard',
+  budgetReminders: true,
+  showTips: true,
+  autoCategorize: false,
+  compactMode: false,
+  dailySummary: false,
+  goalReminders: false,
+  challengeNotifications: false,
+  newsFeed: false,
+  showLeaderboard: false,
+  showBadges: false,
+  theme: 'vibrant',
+  fontSize: 'medium',
+  accessibility: 'standard',
+};
+
 function Settings() {
-  const [displayName, setDisplayName] = useState('');
-  const [email, setEmail] = useState('');
-  const [currency, setCurrency] = useState('USD');
-  const [parentalControls, setParentalControls] = useState(false);
-  const [financialTips, setFinancialTips] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
-  const [notifications, setNotifications] = useState(true);
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [message, setMessage] = useState('');
-  const [language, setLanguage] = useState('en');
-  const [privacyMode, setPrivacyMode] = useState(false);
-  const [weeklySummary, setWeeklySummary] = useState(false);
-  const [autoLogout, setAutoLogout] = useState(false);
-  const [twoFactorAuth, setTwoFactorAuth] = useState(false);
-  const [dataExport, setDataExport] = useState(false);
-  const [reminderTime, setReminderTime] = useState('');
-  const [showAdvanced, setShowAdvanced] = useState(false);
+  const [settings, setSettings] = useState(defaultSettings);
+  const [status, setStatus] = useState('');
 
-  // Helper: get auth token (for demo, replace with real auth)
-  function getAuthToken() {
-    return localStorage.getItem('authToken') || '';
-  }
-
-  // Fetch user settings from backend
-  async function fetchUserSettings() {
-    try {
-      const res = await fetch('/api/user/settings', {
-        headers: { 'Authorization': `Bearer ${getAuthToken()}` },
-      });
-      if (!res.ok) throw new Error('Failed to fetch');
-      return await res.json();
-    } catch (e) {
-      // fallback to localStorage for demo
-      return JSON.parse(localStorage.getItem('userSettings')) || null;
-    }
-  }
-
-  // Save user settings to backend
-  async function saveUserSettings(settings) {
-    try {
-      const res = await fetch('/api/user/settings', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${getAuthToken()}`,
-        },
-        body: JSON.stringify(settings),
-      });
-      if (!res.ok) throw new Error('Failed to save');
-      return true;
-    } catch (e) {
-      // fallback to localStorage for demo
-      localStorage.setItem('userSettings', JSON.stringify(settings));
-      return false;
-    }
-  }
-
-  // Change password
-  async function changePassword(newPassword) {
-    try {
-      const res = await fetch('/api/user/password', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${getAuthToken()}`,
-        },
-        body: JSON.stringify({ newPassword }),
-      });
-      if (!res.ok) throw new Error('Failed to change password');
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  // Delete account
-  async function deleteAccount() {
-    try {
-      const res = await fetch('/api/user', {
-        method: 'DELETE',
-        headers: { 'Authorization': `Bearer ${getAuthToken()}` },
-      });
-      if (!res.ok) throw new Error('Failed to delete');
-      return true;
-    } catch (e) {
-      // fallback: clear localStorage
-      localStorage.removeItem('userSettings');
-      return false;
-    }
-  }
-
-  // Load settings from backend/localStorage on mount
   useEffect(() => {
-    fetchUserSettings().then(saved => {
-      if (saved) {
-        setDisplayName(saved.displayName || '');
-        setEmail(saved.email || '');
-        setCurrency(saved.currency || 'USD');
-        setParentalControls(saved.parentalControls || false);
-        setFinancialTips(saved.financialTips !== undefined ? saved.financialTips : true);
-        setDarkMode(saved.darkMode || false);
-        setNotifications(saved.notifications !== undefined ? saved.notifications : true);
-        setLanguage(saved.language || 'en');
-        setPrivacyMode(saved.privacyMode || false);
-        setWeeklySummary(saved.weeklySummary || false);
-        setAutoLogout(saved.autoLogout || false);
-        setTwoFactorAuth(saved.twoFactorAuth || false);
-        setDataExport(saved.dataExport || false);
-        setReminderTime(saved.reminderTime || '');
-        setShowAdvanced(saved.showAdvanced || false);
-      }
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Load settings from localStorage or backend
+    const saved = localStorage.getItem('userSettings');
+    if (saved) setSettings(JSON.parse(saved));
+    // Optionally fetch from backend here
   }, []);
 
-  // Apply dark mode to body
   useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
-  }, [darkMode]);
+    // Save to localStorage on every change
+    localStorage.setItem('userSettings', JSON.stringify(settings));
+  }, [settings]);
 
-  // Simulate real settings update (replace with API calls in production)
-  function handleSave(e) {
+  const handleChange = e => {
+    const { name, type, checked, value } = e.target;
+    setSettings(s => ({
+      ...s,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleSave = async e => {
     e.preventDefault();
-    if (newPassword && newPassword !== confirmPassword) {
-      setMessage('Passwords do not match.');
-      return;
+    setStatus('Saving...');
+    try {
+      // Optionally: await fetch('/api/user/settings', ...)
+      setStatus('Settings saved!');
+    } catch {
+      setStatus('Failed to save settings.');
     }
-    const settings = {
-      displayName,
-      email,
-      currency,
-      parentalControls,
-      financialTips,
-      darkMode,
-      notifications,
-      language,
-      privacyMode,
-      weeklySummary,
-      autoLogout,
-      twoFactorAuth,
-      dataExport,
-      reminderTime,
-      showAdvanced,
-    };
-    saveUserSettings(settings).then(success => {
-      if (newPassword) {
-        changePassword(newPassword).then(pwSuccess => {
-          setMessage(
-            success && pwSuccess
-              ? 'Settings and password saved!'
-              : 'Saved locally. Backend unavailable.'
-          );
-          setNewPassword('');
-          setConfirmPassword('');
-        });
-      } else {
-        setMessage(success ? 'Settings saved!' : 'Saved locally. Backend unavailable.');
-        setNewPassword('');
-        setConfirmPassword('');
-      }
-    });
-  }
-
-  function handleDelete() {
-    if (window.confirm('Are you sure you want to delete your account? This action is irreversible.')) {
-      deleteAccount().then(success => {
-        setDisplayName('');
-        setEmail('');
-        setCurrency('USD');
-        setParentalControls(false);
-        setFinancialTips(true);
-        setDarkMode(false);
-        setNotifications(true);
-        setNewPassword('');
-        setConfirmPassword('');
-        setLanguage('en');
-        setPrivacyMode(false);
-        setWeeklySummary(false);
-        setAutoLogout(false);
-        setTwoFactorAuth(false);
-        setDataExport(false);
-        setReminderTime('');
-        setShowAdvanced(false);
-        setMessage(success ? 'Account deleted.' : 'Deleted locally. Backend unavailable.');
-        document.body.classList.remove('dark-mode');
-      });
-    }
-  }
+    setTimeout(() => setStatus(''), 2000);
+  };
 
   return (
     <div className="settings-container">
+      <h2>Settings</h2>
       <form className="settings-form" onSubmit={handleSave}>
-        <h2>Settings</h2>
-        <label>
-          Display Name:
-          <input
-            type="text"
-            placeholder="Your name"
-            value={displayName}
-            onChange={e => setDisplayName(e.target.value)}
-          />
-        </label>
-
-        <label>
-          Email:
-          <input
-            type="email"
-            placeholder="Your email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </label>
-
-        <label>
-          Preferred Currency:
-          <select value={currency} onChange={e => setCurrency(e.target.value)}>
-            <option value="USD">USD ($)</option>
-            <option value="EUR">EUR (€)</option>
-            <option value="GBP">GBP (£)</option>
-            <option value="CAD">CAD (C$)</option>
-            <option value="AUD">AUD (A$)</option>
-          </select>
-        </label>
-
-        <label className="checkbox-label">
-          <input
-            type="checkbox"
-            checked={parentalControls}
-            onChange={e => setParentalControls(e.target.checked)}
-          />
-          Enable Parental Controls
-        </label>
-
-        <label className="checkbox-label">
-          <input
-            type="checkbox"
-            checked={financialTips}
-            onChange={e => setFinancialTips(e.target.checked)}
-          />
-          Receive Financial Tips & Challenges
-        </label>
-
-        <label>
-          New Password:
-          <input
-            type="password"
-            placeholder="New password"
-            value={newPassword}
-            onChange={e => setNewPassword(e.target.value)}
-          />
-        </label>
-
-        <label>
-          Confirm Password:
-          <input
-            type="password"
-            placeholder="Confirm new password"
-            value={confirmPassword}
-            onChange={e => setConfirmPassword(e.target.value)}
-          />
-        </label>
-
-        <label className="checkbox-label">
-          <input
-            type="checkbox"
-            checked={darkMode}
-            onChange={e => setDarkMode(e.target.checked)}
-          />
-          Enable Dark Mode
-        </label>
-
-        <label className="checkbox-label">
-          <input
-            type="checkbox"
-            checked={notifications}
-            onChange={e => setNotifications(e.target.checked)}
-          />
-          Enable Notifications
-        </label>
-
-        <label>
-          Language:
-          <select value={language} onChange={e => setLanguage(e.target.value)}>
-            <option value="en">English</option>
-            <option value="es">Spanish</option>
-            <option value="fr">French</option>
-            <option value="de">German</option>
-            <option value="zh">Chinese</option>
-          </select>
-        </label>
-
-        <label className="checkbox-label">
-          <input
-            type="checkbox"
-            checked={privacyMode}
-            onChange={e => setPrivacyMode(e.target.checked)}
-          />
-          Enable Privacy Mode
-        </label>
-
-        <label className="checkbox-label">
-          <input
-            type="checkbox"
-            checked={weeklySummary}
-            onChange={e => setWeeklySummary(e.target.checked)}
-          />
-          Email Weekly Summary
-        </label>
-
-        <label className="checkbox-label">
-          <input
-            type="checkbox"
-            checked={autoLogout}
-            onChange={e => setAutoLogout(e.target.checked)}
-          />
-          Auto-Logout on Inactivity
-        </label>
-
-        <label className="checkbox-label">
-          <input
-            type="checkbox"
-            checked={twoFactorAuth}
-            onChange={e => setTwoFactorAuth(e.target.checked)}
-          />
-          Enable Two-Factor Authentication
-        </label>
-        <label className="checkbox-label">
-          <input
-            type="checkbox"
-            checked={dataExport}
-            onChange={e => setDataExport(e.target.checked)}
-          />
-          Allow Data Export
-        </label>
-        <label>
-          Daily Reminder Time:
-          <input
-            type="time"
-            value={reminderTime}
-            onChange={e => setReminderTime(e.target.value)}
-          />
-        </label>
-        <label className="checkbox-label">
-          <input
-            type="checkbox"
-            checked={showAdvanced}
-            onChange={e => setShowAdvanced(e.target.checked)}
-          />
-          Show Advanced Settings
-        </label>
-
-        <div className="buttons-row">
-          <button type="submit" className="btn-green">Save Settings</button>
-          <button type="button" className="btn-red" onClick={handleDelete}>Delete Account</button>
+        <div className="settings-section">
+          <label>
+            <input type="checkbox" name="darkMode" checked={settings.darkMode} onChange={handleChange} />
+            Dark Mode
+          </label>
+          <label>
+            <input type="checkbox" name="compactMode" checked={settings.compactMode} onChange={handleChange} />
+            Compact Layout
+          </label>
+          <label>
+            <input type="checkbox" name="notifications" checked={settings.notifications} onChange={handleChange} />
+            Enable Notifications
+          </label>
+          <label>
+            <input type="checkbox" name="budgetReminders" checked={settings.budgetReminders} onChange={handleChange} />
+            Budget Reminders
+          </label>
+          <label>
+            <input type="checkbox" name="showTips" checked={settings.showTips} onChange={handleChange} />
+            Show Financial Tips
+          </label>
+          <label>
+            <input type="checkbox" name="autoCategorize" checked={settings.autoCategorize} onChange={handleChange} />
+            Auto-categorize Transactions
+          </label>
         </div>
-        {message && <p className="message">{message}</p>}
+        <div className="settings-section">
+          <label>
+            Currency:
+            <select name="currency" value={settings.currency} onChange={handleChange}>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+              <option value="GBP">GBP</option>
+              <option value="INR">INR</option>
+              <option value="CAD">CAD</option>
+            </select>
+          </label>
+          <label>
+            Language:
+            <select name="language" value={settings.language} onChange={handleChange}>
+              <option value="en">English</option>
+              <option value="es">Spanish</option>
+              <option value="fr">French</option>
+              <option value="de">German</option>
+              <option value="hi">Hindi</option>
+            </select>
+          </label>
+          <label>
+            Privacy:
+            <select name="privacy" value={settings.privacy} onChange={handleChange}>
+              <option value="standard">Standard</option>
+              <option value="strict">Strict</option>
+              <option value="custom">Custom</option>
+            </select>
+          </label>
+          <label>
+            <input type="checkbox" name="emailUpdates" checked={settings.emailUpdates} onChange={handleChange} />
+            Receive Email Updates
+          </label>
+        </div>
+        <div className="settings-section">
+          <label>
+            <input type="checkbox" name="dailySummary" checked={settings.dailySummary || false} onChange={handleChange} />
+            Daily Email Summary
+          </label>
+          <label>
+            <input type="checkbox" name="goalReminders" checked={settings.goalReminders || false} onChange={handleChange} />
+            Remind Me About Savings Goals
+          </label>
+          <label>
+            <input type="checkbox" name="challengeNotifications" checked={settings.challengeNotifications || false} onChange={handleChange} />
+            Notify Me About New Challenges
+          </label>
+          <label>
+            <input type="checkbox" name="newsFeed" checked={settings.newsFeed || false} onChange={handleChange} />
+            Show Financial News Feed
+          </label>
+          <label>
+            <input type="checkbox" name="showLeaderboard" checked={settings.showLeaderboard || false} onChange={handleChange} />
+            Show Community Leaderboard
+          </label>
+          <label>
+            <input type="checkbox" name="showBadges" checked={settings.showBadges || false} onChange={handleChange} />
+            Display Badges & Rewards
+          </label>
+        </div>
+        <div className="settings-section">
+          <label>
+            Theme:
+            <select name="theme" value={settings.theme || 'vibrant'} onChange={handleChange}>
+              <option value="vibrant">Vibrant</option>
+              <option value="classic">Classic</option>
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+              <option value="neon">Neon</option>
+              <option value="pastel">Pastel</option>
+            </select>
+          </label>
+          <label>
+            Font Size:
+            <select name="fontSize" value={settings.fontSize || 'medium'} onChange={handleChange}>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+              <option value="xl">Extra Large</option>
+            </select>
+          </label>
+          <label>
+            Accessibility:
+            <select name="accessibility" value={settings.accessibility || 'standard'} onChange={handleChange}>
+              <option value="standard">Standard</option>
+              <option value="high-contrast">High Contrast</option>
+              <option value="dyslexia">Dyslexia Friendly</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit" className="settings-save-btn">Save Settings</button>
+        {status && <div className="settings-status">{status}</div>}
       </form>
     </div>
   );
 }
 
 export default Settings;
+
 
 
 

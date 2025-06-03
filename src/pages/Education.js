@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './home.css'; // Reuse home styles for consistency
 
+// --- More content: Add more tips, quizzes, flashcards, glossary, and resources ---
+
+// Add more tips
 const tips = [
   {
     title: "Budgeting Basics",
@@ -41,8 +44,41 @@ const tips = [
   { title: "Learn About Investing", content: "Start learning about stocks, bonds, and mutual funds early—even if you don’t invest yet." },
   { title: "Avoid Debt Traps", content: "Don’t borrow more than you can repay. Pay off credit cards in full each month if you use them." },
   { title: "Celebrate Progress", content: "Reward yourself (inexpensively) when you hit a savings milestone!" },
+  { title: "Automate Your Bills", content: "Set up automatic payments for bills to avoid late fees and build your credit history." },
+  { title: "Emergency Fund", content: "Aim to save at least 3 months of expenses for emergencies. Start small and build up!" },
+  { title: "Track Subscriptions", content: "Review your subscriptions every few months. Cancel the ones you don’t use to save money." },
+  { title: "Meal Planning", content: "Plan your meals for the week to save money and avoid food waste." },
+  { title: "Financial Goals", content: "Write down your short-term and long-term financial goals. Review them monthly to stay motivated." },
+  { title: "Credit Score", content: "Check your credit score regularly. Good credit can help you get better rates on loans and credit cards." },
+  { title: "Invest Early", content: "The earlier you start investing, the more your money can grow thanks to compound interest." },
+  { title: "Side Hustles", content: "Consider a side hustle to boost your income and reach your savings goals faster." },
+  { title: "Budget Apps", content: "Use budgeting apps (like CoinFlow!) to track your spending and stay on top of your finances." },
+  { title: "Financial Literacy", content: "Keep learning! Read books, watch videos, and take quizzes to improve your money skills." },
 ];
 
+// Add quiz questions
+const quizQuestions = [
+  { q: 'What is the first step in making a budget?', options: ['Start saving', 'Track your income and expenses', 'Buy what you want', 'Get a credit card'], answer: 1 },
+  { q: 'Why is it important to have an emergency fund?', options: ['To buy new clothes', 'For unexpected expenses', 'To lend to friends', 'To pay for vacations'], answer: 1 },
+  { q: 'Which of these is a “need” rather than a “want”?', options: ['Streaming subscription', 'New phone', 'Groceries', 'Concert tickets'], answer: 2 },
+  { q: 'What is a budget?', options: ['A plan for spending and saving', 'A type of bank account', 'A shopping list', 'A loan'], answer: 0 },
+  { q: 'What is compound interest?', options: ['Interest on the original amount only', 'Interest on both the original amount and the interest earned', 'A type of loan', 'A tax'], answer: 1 },
+  { q: 'What is a credit score used for?', options: ['To track your spending', 'To determine your trustworthiness for loans', 'To calculate taxes', 'To set your salary'], answer: 1 },
+];
+// Add more flashcards
+const flashcards = [
+  { front: 'What is a budget?', back: 'A plan for how you will spend and save your money.' },
+  { front: 'What is a savings goal?', back: 'A target amount you want to save for a specific purpose.' },
+  { front: 'What is compound interest?', back: 'Interest calculated on both the initial principal and the accumulated interest.' },
+  { front: 'What is a credit score?', back: 'A number that shows how trustworthy you are to lenders.' },
+  { front: 'What is an emergency fund?', back: 'Money set aside for unexpected expenses.' },
+  { front: 'What is a transaction?', back: 'A record of money moving in or out of your account.' },
+  { front: 'What is a need?', back: 'Something essential, like food or rent.' },
+  { front: 'What is a want?', back: 'Something nice to have, but not essential.' },
+  { front: 'What is a financial habit?', back: 'A repeated action with your money, like saving or budgeting.' },
+];
+
+// Add more glossary terms
 const glossary = [
   { term: 'Budget', def: 'A plan for how you will spend and save your money each month.' },
   { term: 'Expense', def: 'Money you spend on things like food, rent, or entertainment.' },
@@ -561,6 +597,7 @@ const glossary = [
   { term: 'Exchange Fee', def: 'A charge for converting currency.' },
   { term: 'Remittance Transfer', def: 'Sending money to another country.' },
   { term: 'Wire Room (Bank)', def: 'A department handling wire transfers.' },
+
   { term: 'Bank Draft (Payment)', def: 'A check drawn by a bank.' },
   { term: 'Standing Order', def: 'An instruction to make regular payments.' },
   { term: 'Recurring Payment', def: 'A payment made regularly.' },
@@ -629,423 +666,16 @@ const glossary = [
   { term: 'ACH ADV', def: 'Automated Notification of Change ACH payment.' },
 ];
 
-// Add quizQuestions definition here (moved from above for scope)
-const quizQuestions = [
-  {
-    q: 'What is the first step in making a budget?',
-    options: ['Start saving', 'Track your income and expenses', 'Buy what you want', 'Get a credit card'],
-    answer: 1
-  },
-  {
-    q: 'Why is it important to have an emergency fund?',
-    options: ['To buy new clothes', 'For unexpected expenses', 'To lend to friends', 'To pay for vacations'],
-    answer: 1
-  },
-  {
-    q: 'Which of these is a “need” rather than a “want”?',
-    options: ['Streaming subscription', 'New phone', 'Groceries', 'Concert tickets'],
-    answer: 2
-  },
-  {
-    q: 'What does “pay yourself first” mean?',
-    options: ['Spend all your money', 'Save a portion before spending', 'Pay your friends', 'Buy gifts'],
-    answer: 1
-  },
-  {
-    q: 'What is a good way to avoid impulse buying?',
-    options: ['Shop when hungry', 'Wait 24 hours before buying', 'Buy everything on sale', 'Use a credit card'],
-    answer: 1
-  },
-  {
-    q: 'What is the recommended percentage of your income to save for retirement?',
-    options: ['5%', '10%', '15%', '20%'],
-    answer: 2
-  },
-  {
-    q: 'Which type of account typically earns the most interest?',
-    options: ['Checking account', 'Savings account', 'Money market account', 'Certificate of deposit'],
-    answer: 3
-  },
-  {
-    q: 'What is a 401(k)?',
-    options: ['A type of loan', 'A retirement savings plan', 'A government tax', 'A bank fee'],
-    answer: 1
-  },
-  {
-    q: 'What does it mean to diversify your investments?',
-    options: ['To invest in a single stock', 'To spread your investments across different assets', 'To invest only in bonds', 'To keep all your money in cash'],
-    answer: 1
-  },
-  {
-    q: 'What is the purpose of an emergency fund?',
-    options: ['To pay for monthly bills', 'To save for a vacation', 'To cover unexpected expenses', 'To invest in stocks'],
-    answer: 2
-  },
-  {
-    q: 'Which of the following is a fixed expense?',
-    options: ['Groceries', 'Utilities', 'Rent', 'Entertainment'],
-    answer: 2
-  },
-  {
-    q: 'What is the main benefit of a Roth IRA?',
-    options: ['Tax-deductible contributions', 'Tax-free withdrawals in retirement', 'Employer matching contributions', 'High contribution limits'],
-    answer: 1
-  },
-  {
-    q: 'What should you do if you receive a suspicious email asking for personal information?',
-    options: ['Reply with your information', 'Ignore it', 'Click the links to check', 'Forward it to the authorities'],
-    answer: 3
-  },
-  {
-    q: 'What is the term for the total amount of money you owe to creditors?',
-    options: ['Net worth', 'Debt', 'Income', 'Expenses'],
-    answer: 1
-  },
-  {
-    q: 'Which of the following is NOT a component of a credit score?',
-    options: ['Payment history', 'Credit utilization', 'Length of credit history', 'Income level'],
-    answer: 3
-  },
-  {
-    q: 'What is the primary purpose of insurance?',
-    options: ['To make money', 'To protect against financial loss', 'To save for retirement', 'To pay off debt'],
-    answer: 1
-  },
-  {
-    q: 'What does it mean to refinance a loan?',
-    options: ['To apply for a new loan with better terms', 'To pay off a loan early', 'To consolidate multiple loans', 'To take out a second mortgage'],
-    answer: 0
-  },
-  {
-    q: 'Which of the following is a benefit of using a budgeting app?',
-    options: ['It does all your shopping for you', 'It automatically saves money for you', 'It helps you track and manage your finances', 'It guarantees you will save money'],
-    answer: 2
-  },
-  {
-    q: 'What is the recommended action if you can’t pay a bill on time?',
-    options: ['Ignore it', 'Pay it as soon as possible', 'Only pay the minimum amount', 'Call the creditor to negotiate'],
-    answer: 1
-  },
-  {
-    q: 'Which of the following is a variable expense?',
-    options: ['Rent', 'Car payment', 'Groceries', 'Insurance premium'],
-    answer: 2
-  },
-  {
-    q: 'What is the purpose of a credit report?',
-    options: ['To track your spending', 'To show your credit history and score', 'To list your assets', 'To calculate your net worth'],
-    answer: 1
-  },
-  {
-    q: 'What should you do with important financial documents?',
-    options: ['Throw them away', 'Keep them in a safe place', 'Share them with friends', 'Post them online'],
-    answer: 1
-  },
-  {
-    q: 'What is the term for income that is not subject to taxation?',
-    options: ['Gross income', 'Net income', 'Tax-exempt income', 'Taxable income'],
-    answer: 2
-  },
-  {
-    q: 'Which of the following is a sign of a financial scam?',
-    options: ['Guaranteed high returns with little risk', 'Request for personal information upfront', 'Pressure to act quickly', 'All of the above'],
-    answer: 3
-  },
-  {
-    q: 'What is the first step in creating a financial plan?',
-    options: ['Setting financial goals', 'Analyzing your current financial situation', 'Creating a budget', 'Investing in stocks'],
-    answer: 0
-  },
-  {
-    q: 'Which type of insurance is typically required by lenders when you buy a home?',
-    options: ['Life insurance', 'Health insurance', 'Homeowners insurance', 'Mortgage insurance'],
-    answer: 3
-  },
-  {
-    q: 'What does it mean to have a diversified investment portfolio?',
-    options: ['Investing in a variety of assets to reduce risk', 'Putting all your money in one stock', 'Only investing in bonds', 'Keeping your money in a savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a budget surplus?',
-    options: ['Spending more than you earn', 'Earning more than you spend', 'Borrowing money', 'Paying off debt'],
-    answer: 1
-  },
-  {
-    q: 'Which is an example of a variable expense?',
-    options: ['Rent', 'Car payment', 'Groceries', 'Insurance'],
-    answer: 2
-  },
-  {
-    q: 'What is the main advantage of using a debit card?',
-    options: ['Builds credit', 'No interest charges', 'Earns rewards', 'Increases debt'],
-    answer: 1
-  },
-  {
-    q: 'What is the safest way to shop online?',
-    options: ['Use public Wi-Fi', 'Use a secure website (https)', 'Share your password', 'Send cash by mail'],
-    answer: 1
-  },
-  {
-    q: 'What is a grace period on a credit card?',
-    options: ['Time to pay without interest', 'Time to use rewards', 'Time to increase your limit', 'Time to apply for a loan'],
-    answer: 0
-  },
-  {
-    q: 'What is a financial goal?',
-    options: ['A target for your money', 'A type of loan', 'A bank account', 'A shopping list'],
-    answer: 0
-  },
-  {
-    q: 'What is the benefit of direct deposit?',
-    options: ['Faster access to money', 'Higher interest', 'Lower taxes', 'More fees'],
-    answer: 0
-  },
-  {
-    q: 'What is a checking account used for?',
-    options: ['Long-term savings', 'Daily spending and deposits', 'Investing in stocks', 'Paying taxes'],
-    answer: 1
-  },
-  {
-    q: 'What is a credit limit?',
-    options: ['The minimum you can borrow', 'The maximum you can borrow', 'Your monthly income', 'A type of loan'],
-    answer: 1
-  },
-  {
-    q: 'What is a late fee?',
-    options: ['A reward for early payment', 'A charge for missing a payment', 'A type of loan', 'A bank account'],
-    answer: 1
-  },
-  {
-    q: 'What is a loan principal?',
-    options: ['The interest you pay', 'The original amount borrowed', 'The total paid over time', 'A type of account'],
-    answer: 1
-  },
-  {
-    q: 'What is a mutual fund?',
-    options: ['A pool of money from many investors', 'A type of loan', 'A savings account', 'A credit card'],
-    answer: 0
-  },
-  {
-    q: 'What is a stock dividend?',
-    options: ['A payment to shareholders', 'A type of loan', 'A fee for trading', 'A tax on stocks'],
-    answer: 0
-  },
-  {
-    q: 'What is a 529 plan?',
-    options: ['A retirement account', 'A college savings plan', 'A type of loan', 'A credit card'],
-    answer: 1
-  },
-  {
-    q: 'What is a secured loan?',
-    options: ['Backed by collateral', 'No collateral required', 'A type of credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a cosigner?',
-    options: ['Someone who agrees to repay a loan if you don’t', 'A bank manager', 'A financial advisor', 'A loan officer'],
-    answer: 0
-  },
-  {
-    q: 'What is a credit report?',
-    options: ['A record of your credit history', 'A list of your assets', 'A tax form', 'A savings account statement'],
-    answer: 0
-  },
-  {
-    q: 'What is a tax deduction?',
-    options: ['An expense you can subtract from income', 'A type of loan', 'A credit card fee', 'A bank account'],
-    answer: 0
-  },
-  {
-    q: 'What is a tax credit?',
-    options: ['Reduces the tax you owe', 'Increases your income', 'A type of loan', 'A bank account'],
-    answer: 0
-  },
-  {
-    q: 'What is a W-2 form?',
-    options: ['Shows your earnings and taxes withheld', 'A loan application', 'A credit card statement', 'A savings account form'],
-    answer: 0
-  },
-  {
-    q: 'What is a 1099 form?',
-    options: ['Reports non-employee income', 'A loan application', 'A credit card statement', 'A savings account form'],
-    answer: 0
-  },
-  {
-    q: 'What is a financial advisor?',
-    options: ['Someone who helps you manage your money', 'A bank teller', 'A loan officer', 'A teacher'],
-    answer: 0
-  },
-  {
-    q: 'What is a will?',
-    options: ['A legal document for your property after death', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is an estate?',
-    options: ['Everything a person owns at death', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a beneficiary?',
-    options: ['Person who receives money from insurance or a will', 'A bank manager', 'A loan officer', 'A financial advisor'],
-    answer: 0
-  },
-  {
-    q: 'What is a power of attorney?',
-    options: ['Legal authority to act for someone else', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a trust?',
-    options: ['A legal arrangement for managing assets', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a living will?',
-    options: ['A document stating your medical wishes', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a durable power of attorney?',
-    options: ['Remains in effect if you become incapacitated', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a health savings account (HSA)?',
-    options: ['A tax-advantaged account for medical expenses', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a flexible spending account (FSA)?',
-    options: ['A pre-tax account for health/dependent care', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a premium (insurance)?',
-    options: ['The amount you pay for insurance', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a deductible (insurance)?',
-    options: ['Amount you pay before insurance pays', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a copayment?',
-    options: ['A fixed amount you pay for a service', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is coinsurance?',
-    options: ['A percentage you pay after deductible', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a network (insurance)?',
-    options: ['Providers contracted with your insurance', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a claim (insurance)?',
-    options: ['A request for payment from insurance', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a policyholder?',
-    options: ['The person who owns an insurance policy', 'A bank manager', 'A loan officer', 'A financial advisor'],
-    answer: 0
-  },
-  {
-    q: 'What is a coverage limit?',
-    options: ['The maximum insurance will pay', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a beneficiary (insurance)?',
-    options: ['Person who receives insurance money', 'A bank manager', 'A loan officer', 'A financial advisor'],
-    answer: 0
-  },
-  {
-    q: 'What is a claim number?',
-    options: ['A unique number for an insurance claim', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a policy term?',
-    options: ['The length of time an insurance policy is in effect', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a renewal (insurance)?',
-    options: ['Extending an insurance policy for another term', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a lapse (insurance)?',
-    options: ['When an insurance policy ends due to nonpayment', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a group insurance?',
-    options: ['Insurance offered to a group, like employees', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is COBRA?',
-    options: ['A law allowing you to keep health insurance after leaving a job', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a deductible (tax)?',
-    options: ['An expense you can subtract from income', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a tax refund?',
-    options: ['Money returned if you paid too much tax', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a tax bracket?',
-    options: ['A range of incomes taxed at a certain rate', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a dependent (tax)?',
-    options: ['Someone you support financially', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a standard deduction?',
-    options: ['A fixed amount you can deduct from income', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is an itemized deduction?',
-    options: ['Specific expenses you can deduct from income', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a tax audit?',
-    options: ['An IRS review of your tax return', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a tax preparer?',
-    options: ['A professional who helps file your taxes', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a tax extension?',
-    options: ['Extra time to file your tax return', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
-  {
-    q: 'What is a tax penalty?',
-    options: ['A fee for not following tax rules', 'A type of loan', 'A credit card', 'A savings account'],
-    answer: 0
-  },
+// Add resource links
+const resources = [
+  { title: 'Investopedia: Budgeting', url: 'https://www.investopedia.com/budgeting-4689743' },
+  { title: 'Khan Academy: Personal Finance', url: 'https://www.khanacademy.org/college-careers-more/personal-finance' },
+  { title: 'MyMoney.gov', url: 'https://www.mymoney.gov/' },
+  { title: 'Practical Money Skills', url: 'https://www.practicalmoneyskills.com/' },
+  { title: 'Jump$tart Coalition', url: 'https://www.jumpstart.org/' },
+  { title: 'Consumer.gov: Managing Your Money', url: 'https://consumer.gov/managing-your-money' },
+  { title: 'Mint: Budgeting Tips', url: 'https://mint.intuit.com/blog/budgeting/' },
+  { title: 'Smart About Money', url: 'https://www.smartaboutmoney.org/' },
 ];
 
 function getRandomQuizQuestions(pool, n) {
@@ -1241,4 +871,3 @@ function Education() {
 }
 
 export default Education;
-

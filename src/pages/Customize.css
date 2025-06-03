@@ -1,0 +1,164 @@
+/* Customize.css */
+
+.customize-container {
+  max-width: 650px;
+  margin: 3.5rem auto 2.5rem auto;
+  padding: 2.8rem 2.2rem 2.2rem 2.2rem;
+  background: linear-gradient(120deg, #f7faff 60%, #e0e7ff 100%);
+  border-radius: 28px;
+  box-shadow: 0 12px 40px 0 #6a82fb22, 0 2px 8px #b3b3e633;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #23234c;
+  border: 1.5px solid #e0e7ff;
+}
+
+.customize-container h2 {
+  font-size: 2.3rem;
+  font-weight: 900;
+  color: #4f5bd5;
+  margin-bottom: 2.1rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.customize-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+
+.customize-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.customize-section label {
+  font-size: 1.13rem;
+  color: #3a3a5a;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 200px;
+  background: #f0f4ff;
+  border-radius: 10px;
+  padding: 0.5rem 1.1rem;
+  box-shadow: 0 1px 4px #b3b3e611;
+  margin-bottom: 0.5rem;
+}
+
+.customize-section select, .customize-section input[type="color"] {
+  border: 1.5px solid #b3b3e6;
+  border-radius: 7px;
+  padding: 0.35rem 0.7rem;
+  font-size: 1.05rem;
+  background: #fff;
+  margin-left: 0.5rem;
+  transition: border 0.2s;
+}
+.customize-section select:focus, .customize-section input[type="color"]:focus {
+  border: 2px solid #6a82fb;
+}
+
+.customize-save-btn {
+  background: linear-gradient(90deg, #6a82fb 60%, #fc5c7d 100%);
+  color: #fff;
+  border: none;
+  border-radius: 0.9rem;
+  padding: 0.7rem 2.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 1.18rem;
+  box-shadow: 0 2px 12px #b3b3e633;
+  margin: 1.7rem auto 0 auto;
+  display: block;
+  transition: background 0.15s, box-shadow 0.13s, transform 0.13s;
+  letter-spacing: 0.5px;
+}
+.customize-save-btn:hover {
+  background: linear-gradient(90deg, #fc5c7d 60%, #6a82fb 100%);
+  box-shadow: 0 6px 24px #fc5c7d33;
+  transform: translateY(-2px) scale(1.04);
+}
+
+.customize-status {
+  margin-top: 1.2rem;
+  color: #27ae60;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.customize-preview {
+  margin: 2.7rem auto 0 auto;
+  border: 2.5px solid #6a82fb;
+  border-radius: 22px;
+  padding: 1.5rem 1.7rem;
+  background: #f7faff;
+  text-align: center;
+  box-shadow: 0 4px 18px #6a82fb11;
+  max-width: 400px;
+  min-height: 200px;
+  background-repeat: repeat;
+  background-size: cover;
+  position: relative;
+}
+.customize-preview img {
+  box-shadow: 0 2px 8px #b3b3e633;
+  border: 3px solid #fff;
+}
+
+.customize-preview h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 0.7rem;
+  color: #4f5bd5;
+}
+.customize-preview p {
+  color: #3a3a5a;
+  margin-bottom: 0.7rem;
+}
+
+/* Add some pattern backgrounds for preview (optional, for demo) */
+.customize-preview[style*="dots"] {
+  background-image: repeating-radial-gradient(circle at 10px 10px, #b3b3e6 1.5px, transparent 4px);
+}
+.customize-preview[style*="stripes"] {
+  background-image: repeating-linear-gradient(135deg, #b3b3e6 0 8px, transparent 8px 16px);
+}
+.customize-preview[style*="waves"] {
+  background-image: repeating-linear-gradient(135deg, #6a82fb33 0 12px, transparent 12px 24px);
+}
+.customize-preview[style*="grid"] {
+  background-image: repeating-linear-gradient(#b3b3e6 0 2px, transparent 2px 32px), repeating-linear-gradient(90deg, #b3b3e6 0 2px, transparent 2px 32px);
+}
+.customize-preview[style*="gradient"] {
+  background: linear-gradient(120deg, #f7faff 60%, #e0e7ff 100%);
+}
+
+/* Card style preview tweaks */
+.customize-preview .card {
+  box-shadow: 0 4px 16px #6a82fb33;
+  border-radius: 14px;
+  padding: 1.1rem;
+  margin: 1.1rem auto;
+  background: #fff;
+  border: 2px solid #eee;
+}
+
+@media (max-width: 700px) {
+  .customize-container {
+    padding: 1.2rem 0.5rem;
+  }
+  .customize-preview {
+    max-width: 98vw;
+    padding: 1.1rem 0.5rem;
+  }
+  .customize-section label {
+    min-width: 120px;
+    padding: 0.4rem 0.5rem;
+  }
+}
