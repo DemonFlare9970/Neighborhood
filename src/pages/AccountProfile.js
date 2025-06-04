@@ -32,7 +32,7 @@ const AccountProfile = () => {
           setAvatar(parsed.avatar || 'https://api.dicebear.com/7.x/bottts/svg?seed=User');
         }
       });
-  }, []);
+  }, [API_BASE]);
 
   const handleAvatarChange = e => setAvatarInput(e.target.value);
   const handleAvatarSave = () => {
