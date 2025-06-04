@@ -22,7 +22,7 @@ const AccountProfile = () => {
       .then(res => res.json())
       .then(data => {
         setUser(data);
-        setAvatar(data.avatar || 'https://api.dicebear.com/7.x/bottts/svg?seed=User');
+        setAvatar(data.avatar || '');
       })
       .catch(() => {
         // fallback: try localStorage or show error
@@ -30,7 +30,7 @@ const AccountProfile = () => {
         if (local) {
           const parsed = JSON.parse(local);
           setUser(parsed);
-          setAvatar(parsed.avatar || 'https://api.dicebear.com/7.x/bottts/svg?seed=User');
+          setAvatar(parsed.avatar || '');
         }
       });
   }, []);
