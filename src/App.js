@@ -17,7 +17,7 @@ import Customize from './pages/Customize';
 
 function App() {
   return (
-    <Router basename="/Neighborhood">
+    <Router>
       <CoinFlowNavbar />
       <Routes>
         <Route index element={<Home />} />
