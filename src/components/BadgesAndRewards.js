@@ -215,3 +215,6 @@ const BadgesAndRewards = () => {
 };
 
 export default BadgesAndRewards;
+
+
+

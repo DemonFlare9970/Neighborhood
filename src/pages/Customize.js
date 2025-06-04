@@ -18,12 +18,15 @@ const defaultPrefs = {
 };
 
 const themeOptions = [
-  { value: 'vibrant', label: 'Vibrant' },
-  { value: 'classic', label: 'Classic' },
-  { value: 'dark', label: 'Dark' },
-  { value: 'light', label: 'Light' },
-  { value: 'neon', label: 'Neon' },
+  { value: 'vibrant', label: 'Vibrant (Gradient)' },
+  { value: 'classic', label: 'Classic (Green/White)' },
+  { value: 'dark', label: 'Dark Mode' },
+  { value: 'light', label: 'Light Mode' },
+  { value: 'neon', label: 'Neon Pop' },
   { value: 'pastel', label: 'Pastel' },
+  { value: 'midnight', label: 'Midnight Blue' },
+  { value: 'sunset', label: 'Sunset Orange/Pink' },
+  { value: 'aqua', label: 'Aqua Blue/Teal' },
 ];
 
 const fontSizes = [
@@ -95,10 +98,6 @@ const Customize = () => {
     }));
   };
 
-  const handleAccentChange = e => {
-    setPrefs(p => ({ ...p, colorAccent: e.target.value }));
-  };
-
   const handleSave = e => {
     e.preventDefault();
     setStatus('Preferences saved!');
@@ -136,16 +135,6 @@ const Customize = () => {
           </label>
         </div>
         <div className="customize-section">
-          <label>
-            Accent Color:
-            <input
-              type="color"
-              name="colorAccent"
-              value={prefs.colorAccent}
-              onChange={handleAccentChange}
-              style={{ marginLeft: 8, width: 40, height: 32, border: 'none', background: 'none' }}
-            />
-          </label>
           <label>
             <input
               type="checkbox"

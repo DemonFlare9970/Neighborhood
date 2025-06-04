@@ -6,9 +6,9 @@ body {
 }
 
 header {
-  background-color: #2ecc71;
+  background-color: var(--navbar-bg, #2ecc71);
+  color: var(--navbar-text, #fff);
   padding: 1rem 2rem;
-  color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,6 +19,43 @@ header .logo {
   font-weight: 700;
   font-size: 1.8rem;
   cursor: pointer;
+}
+
+body[data-theme='vibrant'] header {
+  --navbar-bg: #6366f1;
+  --navbar-text: #fff;
+}
+body[data-theme='classic'] header {
+  --navbar-bg: #2ecc71;
+  --navbar-text: #fff;
+}
+body[data-theme='dark'] header {
+  --navbar-bg: #23234c;
+  --navbar-text: #f3f3fa;
+}
+body[data-theme='light'] header {
+  --navbar-bg: #fff;
+  --navbar-text: #23234c;
+}
+body[data-theme='neon'] header {
+  --navbar-bg: #fc5c7d;
+  --navbar-text: #fff;
+}
+body[data-theme='pastel'] header {
+  --navbar-bg: #f7faff;
+  --navbar-text: #6366f1;
+}
+body[data-theme='midnight'] header {
+  --navbar-bg: #181a23;
+  --navbar-text: #b3b3e6;
+}
+body[data-theme='sunset'] header {
+  --navbar-bg: #ff5e62;
+  --navbar-text: #fff;
+}
+body[data-theme='aqua'] header {
+  --navbar-bg: #185a9d;
+  --navbar-text: #fff;
 }
 
 

@@ -15,21 +15,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
-const allowedOrigins = [
-  'http://localhost:3000',
-  process.env.CLIENT_URL
-];
-app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-  credentials: true
-}));
+// Remove the custom CORS config and allowedOrigins array
+app.use(cors()); // Allow all origins for local dev
 
 app.use(helmet());
 app.use(morgan('dev'));

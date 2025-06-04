@@ -162,3 +162,76 @@
     padding: 0.4rem 0.5rem;
   }
 }
+
+body[data-theme='vibrant'] {
+  background: linear-gradient(135deg, #6366f1 0%, #60a5fa 100%);
+  color: #23234c;
+}
+body[data-theme='classic'] {
+  background: linear-gradient(120deg, #e0ffe8 0%, #f7f7f7 100%);
+  color: #222;
+}
+body[data-theme='dark'] {
+  background: #181a23;
+  color: #f3f3fa;
+}
+body[data-theme='light'] {
+  background: #f7fafc;
+  color: #23234c;
+}
+body[data-theme='neon'] {
+  background: linear-gradient(120deg, #fc5c7d 0%, #6a82fb 100%);
+  color: #fff;
+}
+body[data-theme='pastel'] {
+  background: linear-gradient(120deg, #f7faff 60%, #ffe0ec 100%);
+  color: #23234c;
+}
+body[data-theme='midnight'] {
+  background: linear-gradient(120deg, #23234c 0%, #181a23 100%);
+  color: #b3b3e6;
+}
+body[data-theme='sunset'] {
+  background: linear-gradient(120deg, #ff9966 0%, #ff5e62 100%);
+  color: #fff;
+}
+body[data-theme='aqua'] {
+  background: linear-gradient(120deg, #43cea2 0%, #185a9d 100%);
+  color: #fff;
+}
+
+/* Card backgrounds for dark mode, neon, etc */
+.auth-container, .customize-container, .dashboard-container, .goals-main-container, .education-container, .settings-container {
+  background: rgba(255,255,255,0.97);
+  color: inherit;
+}
+body[data-theme='dark'] .auth-container,
+body[data-theme='dark'] .customize-container,
+body[data-theme='dark'] .dashboard-container,
+body[data-theme='dark'] .goals-main-container,
+body[data-theme='dark'] .education-container,
+body[data-theme='dark'] .settings-container {
+  background: #23234c;
+  color: #f3f3fa;
+}
+body[data-theme='neon'] .auth-container,
+body[data-theme='neon'] .customize-container {
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+  box-shadow: 0 8px 32px 0 #fc5c7d55;
+}
+body[data-theme='midnight'] .auth-container,
+body[data-theme='midnight'] .customize-container {
+  background: #23234c;
+  color: #b3b3e6;
+}
+body[data-theme='sunset'] .auth-container,
+body[data-theme='sunset'] .customize-container {
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+}
+body[data-theme='aqua'] .auth-container,
+body[data-theme='aqua'] .customize-container {
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+}

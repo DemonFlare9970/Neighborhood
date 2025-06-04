@@ -865,6 +865,17 @@ function Education() {
             </div>
           </div>
         )}
+        {/* Resources Section */}
+        <section className="education-section">
+          <h3 className="education-section-title">Resources</h3>
+          <ul className="education-resources-list">
+            {resources.map((res, idx) => (
+              <li key={idx}>
+                <a href={res.url} target="_blank" rel="noopener noreferrer">{res.title}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
       </section>
     </div>
   );
