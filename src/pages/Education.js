@@ -65,18 +65,8 @@ const quizQuestions = [
   { q: 'What is compound interest?', options: ['Interest on the original amount only', 'Interest on both the original amount and the interest earned', 'A type of loan', 'A tax'], answer: 1 },
   { q: 'What is a credit score used for?', options: ['To track your spending', 'To determine your trustworthiness for loans', 'To calculate taxes', 'To set your salary'], answer: 1 },
 ];
-// Add more flashcards
-const flashcards = [
-  { front: 'What is a budget?', back: 'A plan for how you will spend and save your money.' },
-  { front: 'What is a savings goal?', back: 'A target amount you want to save for a specific purpose.' },
-  { front: 'What is compound interest?', back: 'Interest calculated on both the initial principal and the accumulated interest.' },
-  { front: 'What is a credit score?', back: 'A number that shows how trustworthy you are to lenders.' },
-  { front: 'What is an emergency fund?', back: 'Money set aside for unexpected expenses.' },
-  { front: 'What is a transaction?', back: 'A record of money moving in or out of your account.' },
-  { front: 'What is a need?', back: 'Something essential, like food or rent.' },
-  { front: 'What is a want?', back: 'Something nice to have, but not essential.' },
-  { front: 'What is a financial habit?', back: 'A repeated action with your money, like saving or budgeting.' },
-];
+
+// Remove unused variable to fix build error
 
 // Add more glossary terms
 const glossary = [
