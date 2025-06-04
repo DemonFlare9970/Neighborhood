@@ -8,11 +8,15 @@ function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const API_BASE = process.env.NODE_ENV === 'production'
+    ? 'https://neighborhood-6pj2.onrender.com'
+    : '';
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })

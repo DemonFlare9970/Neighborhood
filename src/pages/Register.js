@@ -10,12 +10,16 @@ function Register() {
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
 
+  const API_BASE = process.env.NODE_ENV === 'production'
+    ? 'https://neighborhood-6pj2.onrender.com'
+    : '';
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
     try {
-      const res = await fetch('/api/auth/register', {
+      const res = await fetch(`${API_BASE}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password })

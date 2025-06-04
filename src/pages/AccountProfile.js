@@ -3,6 +3,10 @@ import BadgesAndRewards from '../components/BadgesAndRewards';
 import './AccountProfile.css';
 
 const AccountProfile = () => {
+  const API_BASE = process.env.NODE_ENV === 'production'
+    ? 'https://neighborhood-6pj2.onrender.com'
+    : '';
+
   const [user, setUser] = useState(null);
   const [avatar, setAvatar] = useState('');
   const [showAvatarInput, setShowAvatarInput] = useState(false);
@@ -11,7 +15,7 @@ const AccountProfile = () => {
   useEffect(() => {
     // Fetch real user profile from backend (or localStorage fallback)
     const token = localStorage.getItem('token');
-    fetch('/api/user/profile', {
+    fetch(`${API_BASE}/api/user/profile`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -41,7 +45,7 @@ const AccountProfile = () => {
       localStorage.setItem('userProfile', JSON.stringify({ ...user, avatar: avatarInput.trim() }));
       // Optionally: POST/PATCH to backend
       const token = localStorage.getItem('token');
-      fetch('/api/user/profile', {
+      fetch(`${API_BASE}/api/user/profile`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
