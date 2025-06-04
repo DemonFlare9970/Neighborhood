@@ -167,37 +167,25 @@ body[data-theme='vibrant'] {
   background: linear-gradient(135deg, #6366f1 0%, #60a5fa 100%);
   color: #23234c;
 }
-body[data-theme='classic'] {
-  background: linear-gradient(120deg, #e0ffe8 0%, #f7f7f7 100%);
-  color: #222;
-}
-body[data-theme='dark'] {
-  background: #181a23;
-  color: #f3f3fa;
-}
-body[data-theme='light'] {
-  background: #f7fafc;
-  color: #23234c;
-}
-body[data-theme='neon'] {
-  background: linear-gradient(120deg, #fc5c7d 0%, #6a82fb 100%);
+body[data-theme='aqua'] {
+  background: linear-gradient(120deg, #43cea2 0%, #185a9d 100%);
   color: #fff;
-}
-body[data-theme='pastel'] {
-  background: linear-gradient(120deg, #f7faff 60%, #ffe0ec 100%);
-  color: #23234c;
-}
-body[data-theme='midnight'] {
-  background: linear-gradient(120deg, #23234c 0%, #181a23 100%);
-  color: #b3b3e6;
 }
 body[data-theme='sunset'] {
   background: linear-gradient(120deg, #ff9966 0%, #ff5e62 100%);
   color: #fff;
 }
-body[data-theme='aqua'] {
-  background: linear-gradient(120deg, #43cea2 0%, #185a9d 100%);
-  color: #fff;
+body[data-theme='midnight'] {
+  background: linear-gradient(120deg, #23234c 0%, #181a23 100%);
+  color: #b3b3e6;
+}
+body[data-theme='light'] {
+  background: #f7fafc;
+  color: #23234c;
+}
+body[data-theme='dark'] {
+  background: #181a23;
+  color: #f3f3fa;
 }
 
 /* Card backgrounds for dark mode, neon, etc */

@@ -2,22 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './Settings.css';
 
 const defaultSettings = {
-  darkMode: false,
   notifications: true,
   emailUpdates: false,
   currency: 'USD',
   language: 'en',
   privacy: 'standard',
-  budgetReminders: true,
-  showTips: true,
-  autoCategorize: false,
-  compactMode: false,
-  dailySummary: false,
-  goalReminders: false,
-  challengeNotifications: false,
-  newsFeed: false,
-  showLeaderboard: false,
-  showBadges: false,
   theme: 'vibrant',
   fontSize: 'medium',
   accessibility: 'standard',
@@ -65,31 +54,13 @@ function Settings() {
       <form className="settings-form" onSubmit={handleSave}>
         <div className="settings-section">
           <label>
-            <input type="checkbox" name="darkMode" checked={settings.darkMode} onChange={handleChange} />
-            Dark Mode
-          </label>
-          <label>
-            <input type="checkbox" name="compactMode" checked={settings.compactMode} onChange={handleChange} />
-            Compact Layout
-          </label>
-          <label>
+            Notifications:
             <input type="checkbox" name="notifications" checked={settings.notifications} onChange={handleChange} />
-            Enable Notifications
           </label>
           <label>
-            <input type="checkbox" name="budgetReminders" checked={settings.budgetReminders} onChange={handleChange} />
-            Budget Reminders
+            Email Updates:
+            <input type="checkbox" name="emailUpdates" checked={settings.emailUpdates} onChange={handleChange} />
           </label>
-          <label>
-            <input type="checkbox" name="showTips" checked={settings.showTips} onChange={handleChange} />
-            Show Financial Tips
-          </label>
-          <label>
-            <input type="checkbox" name="autoCategorize" checked={settings.autoCategorize} onChange={handleChange} />
-            Auto-categorize Transactions
-          </label>
-        </div>
-        <div className="settings-section">
           <label>
             Currency:
             <select name="currency" value={settings.currency} onChange={handleChange}>
@@ -118,47 +89,17 @@ function Settings() {
               <option value="custom">Custom</option>
             </select>
           </label>
-          <label>
-            <input type="checkbox" name="emailUpdates" checked={settings.emailUpdates} onChange={handleChange} />
-            Receive Email Updates
-          </label>
-        </div>
-        <div className="settings-section">
-          <label>
-            <input type="checkbox" name="dailySummary" checked={settings.dailySummary || false} onChange={handleChange} />
-            Daily Email Summary
-          </label>
-          <label>
-            <input type="checkbox" name="goalReminders" checked={settings.goalReminders || false} onChange={handleChange} />
-            Remind Me About Savings Goals
-          </label>
-          <label>
-            <input type="checkbox" name="challengeNotifications" checked={settings.challengeNotifications || false} onChange={handleChange} />
-            Notify Me About New Challenges
-          </label>
-          <label>
-            <input type="checkbox" name="newsFeed" checked={settings.newsFeed || false} onChange={handleChange} />
-            Show Financial News Feed
-          </label>
-          <label>
-            <input type="checkbox" name="showLeaderboard" checked={settings.showLeaderboard || false} onChange={handleChange} />
-            Show Community Leaderboard
-          </label>
-          <label>
-            <input type="checkbox" name="showBadges" checked={settings.showBadges || false} onChange={handleChange} />
-            Display Badges & Rewards
-          </label>
         </div>
         <div className="settings-section">
           <label>
             Theme:
-            <select name="theme" value={settings.theme || 'vibrant'} onChange={handleChange}>
+            <select name="theme" value={settings.theme} onChange={handleChange}>
               <option value="vibrant">Vibrant</option>
-              <option value="classic">Classic</option>
-              <option value="dark">Dark</option>
+              <option value="aqua">Aqua</option>
+              <option value="sunset">Sunset</option>
+              <option value="midnight">Midnight</option>
               <option value="light">Light</option>
-              <option value="neon">Neon</option>
-              <option value="pastel">Pastel</option>
+              <option value="dark">Dark</option>
             </select>
           </label>
           <label>

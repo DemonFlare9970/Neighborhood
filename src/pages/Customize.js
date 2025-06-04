@@ -18,15 +18,12 @@ const defaultPrefs = {
 };
 
 const themeOptions = [
-  { value: 'vibrant', label: 'Vibrant (Gradient)' },
-  { value: 'classic', label: 'Classic (Green/White)' },
-  { value: 'dark', label: 'Dark Mode' },
-  { value: 'light', label: 'Light Mode' },
-  { value: 'neon', label: 'Neon Pop' },
-  { value: 'pastel', label: 'Pastel' },
-  { value: 'midnight', label: 'Midnight Blue' },
-  { value: 'sunset', label: 'Sunset Orange/Pink' },
-  { value: 'aqua', label: 'Aqua Blue/Teal' },
+  { value: 'vibrant', label: 'Vibrant (Purple/Blue Gradient)' },
+  { value: 'aqua', label: 'Aqua (Blue/Teal Gradient)' },
+  { value: 'sunset', label: 'Sunset (Orange/Pink Gradient)' },
+  { value: 'midnight', label: 'Midnight (Blue/Black Gradient)' },
+  { value: 'light', label: 'Light' },
+  { value: 'dark', label: 'Dark' },
 ];
 
 const fontSizes = [
