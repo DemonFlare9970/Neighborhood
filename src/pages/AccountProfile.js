@@ -12,6 +12,7 @@ const AccountProfile = () => {
   const [showAvatarInput, setShowAvatarInput] = useState(false);
   const [avatarInput, setAvatarInput] = useState('');
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     // Fetch real user profile from backend (or localStorage fallback)
     const token = localStorage.getItem('token');
@@ -32,7 +33,7 @@ const AccountProfile = () => {
           setAvatar(parsed.avatar || 'https://api.dicebear.com/7.x/bottts/svg?seed=User');
         }
       });
-  }, [API_BASE]);
+  }, []);
 
   const handleAvatarChange = e => setAvatarInput(e.target.value);
   const handleAvatarSave = () => {
