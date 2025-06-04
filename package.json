@@ -21,7 +21,6 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.6.0",
-    "react-scripts": "^5.0.1",
     "tailwind": "^4.0.0"
   },
   "scripts": {
@@ -61,9 +60,9 @@
   "bugs": {
     "url": "https://github.com/DemonFlare9970/Neighborhood/issues"
   },
-  "homepage": "https://demonflare9970.github.io/Neighborhood/",
   "devDependencies": {
     "gh-pages": "^6.3.0",
-    "react-app-rewired": "^2.2.1"
+    "react-app-rewired": "^2.2.1",
+    "react-scripts": "^5.0.1"
   }
 }
