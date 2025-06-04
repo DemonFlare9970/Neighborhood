@@ -1,11 +1,11 @@
+import React, { useEffect, useState } from 'react';
+import BadgesAndRewards from '../components/BadgesAndRewards';
+import './AccountProfile.css';
+
 // Move API_BASE outside the component to avoid eslint exhaustive-deps error
 const API_BASE = process.env.NODE_ENV === 'production'
   ? 'https://neighborhood-6pj2.onrender.com'
   : '';
-
-import React, { useEffect, useState } from 'react';
-import BadgesAndRewards from '../components/BadgesAndRewards';
-import './AccountProfile.css';
 
 const AccountProfile = () => {
   const [user, setUser] = useState(null);
