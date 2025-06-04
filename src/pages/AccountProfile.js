@@ -1,12 +1,13 @@
+// Move API_BASE outside the component to avoid eslint exhaustive-deps error
+const API_BASE = process.env.NODE_ENV === 'production'
+  ? 'https://neighborhood-6pj2.onrender.com'
+  : '';
+
 import React, { useEffect, useState } from 'react';
 import BadgesAndRewards from '../components/BadgesAndRewards';
 import './AccountProfile.css';
 
 const AccountProfile = () => {
-  const API_BASE = process.env.NODE_ENV === 'production'
-    ? 'https://neighborhood-6pj2.onrender.com'
-    : '';
-
   const [user, setUser] = useState(null);
   const [avatar, setAvatar] = useState('');
   const [showAvatarInput, setShowAvatarInput] = useState(false);
@@ -33,7 +34,7 @@ const AccountProfile = () => {
           setAvatar(parsed.avatar || '');
         }
       });
-  }, []);
+  }, [/* API_BASE intentionally omitted to avoid eslint exhaustive-deps error */]);
 
   const handleAvatarChange = e => setAvatarInput(e.target.value);
   const handleAvatarSave = () => {
