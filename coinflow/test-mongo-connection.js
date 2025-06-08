@@ -1,7 +1,8 @@
 // Standalone MongoDB Atlas connection test for Node.js
+require('dotenv').config();
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
-const uri = "mongodb+srv://rehanjalali0130:Kakabuli0130@cluster0.rxnx35b.mongodb.net/admin?retryWrites=true&w=majority&appName=Cluster0&authSource=admin";
+const uri = process.env.MONGO_URI;
 
 const client = new MongoClient(uri, {
   serverApi: {
@@ -14,7 +15,9 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     await client.connect();
-    await client.db("admin").command({ ping: 1 });
+    // Use the db name from the URI
+    const dbName = uri.split('.net/')[1].split('?')[0];
+    await client.db(dbName).command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } catch (err) {
     console.error("MongoDB connection error:", err);

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './CommunityChallenges.css';
 
-const challengesList = [
+// --- Large pool of challenges ---
+const allChallenges = [
   {
     id: 1,
     title: 'Log 5 Transactions',
@@ -197,71 +198,151 @@ const challengesList = [
       { name: 'Sam', progress: 90 },
     ],
   },
+  // Add more for variety
+  { id: 16, title: 'No Spend Day', description: 'Go one day this week without spending any money.', xpBase: 60, xpBonus: 30, participants: 18, leaderboard: [ { name: 'Alex', progress: 100 }, { name: 'Sam', progress: 100 }, { name: 'Jamie', progress: 100 } ] },
+  { id: 17, title: 'Meal Prep Master', description: 'Plan and log 3 home-cooked meals.', xpBase: 90, xpBonus: 40, participants: 14, leaderboard: [ { name: 'Taylor', progress: 100 }, { name: 'Morgan', progress: 90 }, { name: 'Alex', progress: 80 } ] },
+  { id: 18, title: 'Review Your Subscriptions', description: 'List and review all your recurring subscriptions.', xpBase: 70, xpBonus: 30, participants: 11, leaderboard: [ { name: 'Jordan', progress: 100 }, { name: 'Sam', progress: 90 }, { name: 'Alex', progress: 80 } ] },
+  { id: 19, title: 'Try a New Category', description: 'Log a transaction in a category you have never used before.', xpBase: 80, xpBonus: 40, participants: 13, leaderboard: [ { name: 'Alex', progress: 100 }, { name: 'Jamie', progress: 90 }, { name: 'Taylor', progress: 80 } ] },
+  { id: 20, title: 'Financial Reflection', description: 'Write a short reflection on your spending habits this week.', xpBase: 60, xpBonus: 30, participants: 9, leaderboard: [ { name: 'Morgan', progress: 100 }, { name: 'Alex', progress: 100 }, { name: 'Sam', progress: 90 } ] },
+  { id: 21, title: 'Charity Challenge', description: 'Donate to a cause or help someone in need.', xpBase: 100, xpBonus: 50, participants: 7, leaderboard: [ { name: 'Taylor', progress: 100 }, { name: 'Alex', progress: 90 }, { name: 'Jordan', progress: 80 } ] },
+  { id: 22, title: 'Track Cash Only', description: 'Log only cash transactions for 3 days.', xpBase: 80, xpBonus: 40, participants: 10, leaderboard: [ { name: 'Sam', progress: 100 }, { name: 'Morgan', progress: 90 }, { name: 'Alex', progress: 80 } ] },
+  { id: 23, title: 'Financial Podcast', description: 'Listen to a financial podcast and share a takeaway.', xpBase: 60, xpBonus: 30, participants: 8, leaderboard: [ { name: 'Jamie', progress: 100 }, { name: 'Alex', progress: 90 }, { name: 'Taylor', progress: 80 } ] },
+  { id: 24, title: 'Grocery Savings', description: 'Save at least $10 on groceries this week.', xpBase: 90, xpBonus: 40, participants: 12, leaderboard: [ { name: 'Morgan', progress: 100 }, { name: 'Sam', progress: 90 }, { name: 'Alex', progress: 80 } ] },
+  { id: 25, title: 'Unsubscribe Sprint', description: 'Unsubscribe from 2+ marketing emails.', xpBase: 50, xpBonus: 20, participants: 15, leaderboard: [ { name: 'Taylor', progress: 100 }, { name: 'Alex', progress: 100 }, { name: 'Jamie', progress: 90 } ] },
+  { id: 26, title: 'DIY Project', description: 'Complete a DIY project instead of buying new.', xpBase: 120, xpBonus: 60, participants: 6, leaderboard: [ { name: 'Jordan', progress: 100 }, { name: 'Sam', progress: 90 }, { name: 'Alex', progress: 80 } ] },
+  { id: 27, title: 'Read a Finance Book', description: 'Read a chapter of a finance book.', xpBase: 70, xpBonus: 30, participants: 10, leaderboard: [ { name: 'Alex', progress: 100 }, { name: 'Jamie', progress: 90 }, { name: 'Taylor', progress: 80 } ] },
+  { id: 28, title: 'Zero-Based Budget', description: 'Try zero-based budgeting for a week.', xpBase: 110, xpBonus: 50, participants: 8, leaderboard: [ { name: 'Morgan', progress: 100 }, { name: 'Alex', progress: 90 }, { name: 'Sam', progress: 80 } ] },
+  { id: 29, title: 'No Takeout Week', description: 'Avoid takeout food for 7 days.', xpBase: 100, xpBonus: 50, participants: 9, leaderboard: [ { name: 'Taylor', progress: 100 }, { name: 'Sam', progress: 90 }, { name: 'Alex', progress: 80 } ] },
+  { id: 30, title: 'Track a New Goal', description: 'Set and track a new savings or spending goal.', xpBase: 80, xpBonus: 40, participants: 11, leaderboard: [ { name: 'Jordan', progress: 100 }, { name: 'Alex', progress: 100 }, { name: 'Jamie', progress: 90 } ] },
+  // ...add more as desired...
 ];
+
+// Deterministic weekly random selection (same for all users)
+function getWeekNumber(date = new Date()) {
+  const firstJan = new Date(date.getFullYear(), 0, 1);
+  const days = Math.floor((date - firstJan) / (24 * 60 * 60 * 1000));
+  return Math.ceil((days + firstJan.getDay() + 1) / 7);
+}
+function seededRandom(seed) {
+  let x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+function getWeeklyChallenges(all, week, count = 10) {
+  // Shuffle deterministically by week
+  let arr = [...all];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(seededRandom(week + i) * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr.slice(0, count);
+}
 
 const CommunityChallenges = () => {
   const [joined, setJoined] = useState([]); // challenge ids
-  const [progress, setProgress] = useState({}); // {challengeId: percent}
   const [xpEarned, setXpEarned] = useState(0);
+  const [completed, setCompleted] = useState(() => {
+    // Load completed challenge IDs from localStorage
+    try {
+      return JSON.parse(localStorage.getItem('completedChallenges') || '[]');
+    } catch {
+      return [];
+    }
+  });
+
+  // Simulate current user (replace with real user context in production)
+  const currentUser = localStorage.getItem('username') || 'Alex';
+
+  // Get this week's challenges
+  const week = getWeekNumber();
+  const weeklyChallenges = getWeeklyChallenges(allChallenges, week, 10);
+
+  // Save completed challenges to localStorage
+  useEffect(() => {
+    localStorage.setItem('completedChallenges', JSON.stringify(completed));
+  }, [completed]);
 
   function joinChallenge(id) {
     if (!joined.includes(id)) setJoined(j => [...j, id]);
   }
 
-  function updateProgress(id, val) {
-    setProgress(p => ({ ...p, [id]: Math.max(0, Math.min(100, Number(val))) }));
+  function claimXP(id) {
+    if (completed.includes(id)) return; // Already claimed
+    const challenge = weeklyChallenges.find(c => c.id === id);
+    // Find user's progress from leaderboard
+    const entry = challenge.leaderboard.find(e => e.name === currentUser);
+    const percent = entry ? entry.progress : 0;
+    if (percent < 100) return; // Only allow claim if 100%
+    let xp = challenge.xpBase + challenge.xpBonus;
+    setXpEarned(x => x + xp);
+    setCompleted(c => [...c, id]);
   }
 
-  function claimXP(id) {
-    const challenge = challengesList.find(c => c.id === id);
-    const percent = progress[id] || 0;
-    let xp = Math.round(challenge.xpBase * (percent / 100));
-    if (percent === 100) xp += challenge.xpBonus;
-    setXpEarned(x => x + xp);
-    // Optionally: mark as completed/claimed
-  }
+  // Countdown to next week (Sunday midnight)
+  const [countdown, setCountdown] = useState('');
+  useEffect(() => {
+    function updateCountdown() {
+      const now = new Date();
+      const nextSunday = new Date(now);
+      nextSunday.setDate(now.getDate() + (7 - now.getDay()));
+      nextSunday.setHours(0, 0, 0, 0);
+      const diff = nextSunday - now;
+      if (diff > 0) {
+        const h = Math.floor(diff / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        setCountdown(`${h}h ${m}m left`);
+      } else {
+        setCountdown('New challenges soon!');
+      }
+    }
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 60000);
+    return () => clearInterval(timer);
+  }, [week]);
 
   return (
     <div className="community-challenges-container">
       <h2>Community Challenges</h2>
+      <div style={{fontSize:'1.1rem',marginBottom:12,color:'#888'}}>New challenges every week! <b>{countdown}</b></div>
       <div className="challenges-list">
-        {challengesList.map(challenge => (
-          <div className="challenge-card" key={challenge.id}>
-            <h3>{challenge.title}</h3>
-            <p>{challenge.description}</p>
-            <p className="challenge-participants">Participants: {challenge.participants}</p>
-            <div className="challenge-leaderboard">
-              <span>Leaderboard:</span>
-              <ol>
-                {challenge.leaderboard.map((entry, idx) => (
-                  <li key={idx}>{entry.name} - {entry.progress}%</li>
-                ))}
-              </ol>
-            </div>
-            {joined.includes(challenge.id) ? (
-              <div className="challenge-progress-section">
-                <label>
-                  Your Progress: 
-                  <input
-                    type="number"
-                    min="0"
-                    max="100"
-                    value={progress[challenge.id] || ''}
-                    onChange={e => updateProgress(challenge.id, e.target.value)}
-                    style={{marginLeft:8, width:60}}
-                  />%
-                </label>
-                <button className="profile-claim-btn" onClick={() => claimXP(challenge.id)}>
-                  Claim XP
-                </button>
+        {weeklyChallenges.map(challenge => {
+          // Find current user's progress in leaderboard
+          const userEntry = challenge.leaderboard.find(e => e.name === currentUser);
+          const userProgress = userEntry ? userEntry.progress : 0;
+          const isCompleted = completed.includes(challenge.id);
+          return (
+            <div className="challenge-card" key={challenge.id}>
+              <h3>{challenge.title}</h3>
+              <p>{challenge.description}</p>
+              <p className="challenge-participants">Participants: {challenge.participants}</p>
+              <div className="challenge-leaderboard">
+                <span>Leaderboard:</span>
+                <ol>
+                  {challenge.leaderboard.map((entry, idx) => (
+                    <li key={idx}>{entry.name} - {entry.progress}%</li>
+                  ))}
+                </ol>
               </div>
-            ) : (
-              <button className="profile-action-btn" onClick={() => joinChallenge(challenge.id)}>
-                Join Challenge
-              </button>
-            )}
-          </div>
-        ))}
+              {joined.includes(challenge.id) ? (
+                <div className="challenge-progress-section">
+                  <span>Your Progress: <b>{userProgress}%</b></span>
+                  {isCompleted ? (
+                    <button className="profile-claim-btn" disabled style={{opacity:0.6}}>Completed</button>
+                  ) : userProgress === 100 ? (
+                    <button className="profile-claim-btn" onClick={() => claimXP(challenge.id)}>
+                      Claim XP
+                    </button>
+                  ) : (
+                    <button className="profile-claim-btn" disabled style={{opacity:0.6}}>Complete to Claim</button>
+                  )}
+                </div>
+              ) : (
+                <button className="profile-action-btn" onClick={() => joinChallenge(challenge.id)}>
+                  Join Challenge
+                </button>
+              )}
+            </div>
+          );
+        })}
       </div>
       <div className="challenge-xp-earned">Total XP Earned: <b>{xpEarned}</b></div>
     </div>

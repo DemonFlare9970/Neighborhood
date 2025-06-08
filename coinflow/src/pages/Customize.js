@@ -80,13 +80,44 @@ const Customize = () => {
 
   useEffect(() => {
     localStorage.setItem('customizePrefs', JSON.stringify(prefs));
-    // Optionally: apply theme/font size to document body
+    // Theme (handled by data-theme for CSS)
     document.body.setAttribute('data-theme', prefs.theme);
+    // Font size
     document.body.style.fontSize =
       prefs.fontSize === 'small' ? '15px' :
       prefs.fontSize === 'large' ? '20px' :
       prefs.fontSize === 'xl' ? '24px' : '17px';
+    // Accessibility
     document.body.setAttribute('data-accessibility', prefs.accessibility);
+    // Accent color
+    document.body.style.setProperty('--color-accent', prefs.colorAccent);
+    // Card style
+    document.body.setAttribute('data-card-style', prefs.cardStyle);
+    // Navbar style
+    document.body.setAttribute('data-nav-style', prefs.navStyle);
+    // Button shape
+    document.body.setAttribute('data-button-shape', prefs.buttonShape);
+    // Transition speed
+    document.body.style.setProperty('--transition-speed',
+      prefs.transitionSpeed === 'slow' ? '0.7s' :
+      prefs.transitionSpeed === 'fast' ? '0.15s' : '0.35s');
+    // Animations
+    document.body.setAttribute('data-animations', prefs.showAnimations ? 'on' : 'off');
+    // Rounded corners
+    document.body.setAttribute('data-rounded', prefs.roundedCorners ? 'on' : 'off');
+    // Footer/ProfilePic (for global CSS, if needed)
+    document.body.setAttribute('data-show-footer', prefs.showFooter ? 'on' : 'off');
+    document.body.setAttribute('data-show-profile-pic', prefs.showProfilePic ? 'on' : 'off');
+    // Background pattern (as overlay, not replacing theme background)
+    if (prefs.backgroundPattern !== 'none') {
+      document.body.setAttribute('data-bg-pattern', prefs.backgroundPattern);
+    } else {
+      document.body.removeAttribute('data-bg-pattern');
+    }
+    // --- THEME BACKGROUND FIX ---
+    // Remove any direct backgroundImage/backgroundColor overrides
+    document.body.style.backgroundImage = '';
+    document.body.style.backgroundColor = '';
   }, [prefs]);
 
   const handleChange = e => {
@@ -218,12 +249,48 @@ const Customize = () => {
         <button type="submit" className="customize-save-btn">Save Preferences</button>
         {status && <div className="customize-status">{status}</div>}
       </form>
-      <div className="customize-preview" style={{ borderColor: prefs.colorAccent, borderRadius: prefs.roundedCorners ? 18 : 0, background: prefs.backgroundPattern !== 'none' ? `url(/patterns/${prefs.backgroundPattern}.svg)` : '#f7faff', transition: `all ${prefs.transitionSpeed === 'slow' ? '0.7s' : prefs.transitionSpeed === 'fast' ? '0.15s' : '0.35s'} ease` }}>
-        <h3 style={{ color: prefs.colorAccent }}>{prefs.navStyle === 'classic' ? 'Classic Navbar' : prefs.navStyle === 'minimal' ? 'Minimal Navbar' : 'Modern Navbar'}</h3>
-        <p style={{ fontSize: prefs.fontSize === 'small' ? 15 : prefs.fontSize === 'large' ? 20 : prefs.fontSize === 'xl' ? 24 : 17, fontFamily: prefs.accessibility === 'dyslexia' ? 'OpenDyslexic, Arial, sans-serif' : undefined }}>
+      <div className="customize-preview" style={{
+        borderColor: prefs.colorAccent,
+        borderRadius: prefs.roundedCorners ? 18 : 0,
+        background: prefs.backgroundPattern !== 'none' ? `url(/patterns/${prefs.backgroundPattern}.svg)` : '#f7faff',
+        transition: `all ${
+          prefs.transitionSpeed === 'slow' ? '0.7s' :
+          prefs.transitionSpeed === 'fast' ? '0.15s' : '0.35s'
+        } ease`,
+        overflow: prefs.roundedCorners ? 'hidden' : 'visible',
+      }}>
+        <h3 style={{ color: prefs.colorAccent }}>{
+          prefs.navStyle === 'classic' ? 'Classic Navbar' :
+          prefs.navStyle === 'minimal' ? 'Minimal Navbar' : 'Modern Navbar'
+        }</h3>
+        <p style={{
+          fontSize: prefs.fontSize === 'small' ? 15 :
+            prefs.fontSize === 'large' ? 20 :
+            prefs.fontSize === 'xl' ? 24 : 17,
+          fontFamily: prefs.accessibility === 'dyslexia' ? 'OpenDyslexic, Arial, sans-serif' : undefined
+        }}>
           This is how your CoinFlow app will look with your chosen settings!
         </p>
-        <div style={{ height: 32, width: 32, background: prefs.colorAccent, borderRadius: prefs.buttonShape === 'pill' ? 16 : prefs.buttonShape === 'square' ? 0 : 8, margin: '0.5rem auto', boxShadow: prefs.cardStyle === 'elevated' ? '0 4px 16px #6a82fb33' : prefs.cardStyle === 'glass' ? '0 2px 8px #fff8, 0 1px 4px #b3b3e633' : 'none', border: prefs.cardStyle === 'bordered' ? '2px solid #6a82fb' : 'none', backdropFilter: prefs.cardStyle === 'glass' ? 'blur(4px)' : 'none' }} />
+        <button
+          className="customize-preview-btn"
+          style={{
+            height: 32,
+            width: 120,
+            background: prefs.colorAccent,
+            color: '#fff',
+            border: 'none',
+            margin: '0.5rem auto',
+            display: 'block',
+            borderRadius: prefs.roundedCorners ? (prefs.buttonShape === 'pill' ? 16 : prefs.buttonShape === 'square' ? 0 : 8) : 0,
+            boxShadow: prefs.cardStyle === 'elevated' ? '0 4px 16px #6a82fb33' :
+              prefs.cardStyle === 'glass' ? '0 2px 8px #fff8, 0 1px 4px #b3b3e633' : 'none',
+            border: prefs.cardStyle === 'bordered' ? '2px solid #6a82fb' : 'none',
+            backdropFilter: prefs.cardStyle === 'glass' ? 'blur(4px)' : 'none',
+            transition: 'border-radius 0.2s, background 0.2s',
+          }}
+        >
+          Example Button
+        </button>
         {prefs.showProfilePic && <img src="https://api.dicebear.com/7.x/bottts/svg?seed=User" alt="Profile" style={{ width: 40, height: 40, borderRadius: '50%', margin: '0.5rem auto', display: 'block' }} />}
         {prefs.showFooter && <footer style={{ marginTop: 16, color: '#888', fontSize: 13 }}>&copy; {new Date().getFullYear()} CoinFlow</footer>}
       </div>

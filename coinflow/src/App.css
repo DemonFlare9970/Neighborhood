@@ -21,23 +21,29 @@ header .logo {
   cursor: pointer;
 }
 
-body[data-theme='vibrant'] header {
-  --navbar-bg: #6366f1;
-  --navbar-text: #fff;
+body[data-theme='vibrant'] {
+  background: linear-gradient(135deg, #6a82fb, #fc5c7d);
+  color: #222;
 }
-body[data-theme='classic'] header {
+body[data-theme='classic'] {
   --navbar-bg: #2ecc71;
   --navbar-text: #fff;
 }
-body[data-theme='dark'] header {
+body[data-theme='dark'] {
+  background: #181a1b;
+  color: #eee;
   --navbar-bg: #23234c;
   --navbar-text: #f3f3fa;
 }
-body[data-theme='light'] header {
+body[data-theme='light'] {
+  background: #fff;
+  color: #23234c;
   --navbar-bg: #fff;
   --navbar-text: #23234c;
 }
-body[data-theme='neon'] header {
+body[data-theme='neon'] {
+  background: linear-gradient(135deg, #fc5c7d, #6a82fb, #43e97b);
+  color: #fff;
   --navbar-bg: #fc5c7d;
   --navbar-text: #fff;
 }
@@ -45,7 +51,9 @@ body[data-theme='pastel'] header {
   --navbar-bg: #f7faff;
   --navbar-text: #6366f1;
 }
-body[data-theme='midnight'] header {
+body[data-theme='midnight'] {
+  background: linear-gradient(135deg, #181a23, #23234c);
+  color: #b3b3e6;
   --navbar-bg: #181a23;
   --navbar-text: #b3b3e6;
 }
@@ -53,9 +61,19 @@ body[data-theme='sunset'] header {
   --navbar-bg: #ff5e62;
   --navbar-text: #fff;
 }
-body[data-theme='aqua'] header {
+body[data-theme='aqua'] {
+  background: linear-gradient(135deg, #185a9d, #43cea2);
+  color: #fff;
   --navbar-bg: #185a9d;
   --navbar-text: #fff;
+}
+body[data-theme='galaxy'] {
+  background: linear-gradient(135deg, #654ea3, #eaafc8, #43cea2);
+  color: #fff;
+}
+body[data-theme='aurora'] {
+  background: linear-gradient(135deg, #00c3ff, #ffff1c, #ff61a6);
+  color: #222;
 }
 
 
