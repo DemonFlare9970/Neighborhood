@@ -1,0 +1,499 @@
+/* Vibrant, modern BudgetPlanner.css inspired by home.css */
+body {
+  background: linear-gradient(120deg, #e0ffe8 0%, #f7f7f7 100%);
+  min-height: 100vh;
+}
+
+.budget-planner-container {
+  max-width: 900px;
+  margin: 3.5rem auto 2.5rem auto;
+  padding: 2.5rem 2rem 2.5rem 2rem;
+  background: rgba(255,255,255,0.92);
+  border-radius: 22px;
+  box-shadow: 0 10px 36px rgba(46,204,113,0.13), 0 2px 8px rgba(0,0,0,0.06);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.budget-planner-hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.budget-planner-hero h2 {
+  color: #27ae60;
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: -1px;
+}
+
+.budget-planner-hero p {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.budget-planner-income-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.budget-planner-income-label {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #2e8b57;
+  background: #ecf9f1;
+  padding: 0.7rem 1.2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #b2f2d6;
+}
+
+.budget-planner-income-input {
+  margin-left: 10px;
+  width: 130px;
+  font-size: 1.1rem;
+  padding: 0.5rem 0.9rem;
+  border: 1.5px solid #b2f2d6;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s;
+  background: #fff;
+}
+
+.budget-planner-income-input:focus {
+  border: 2px solid #27ae60;
+}
+
+.budget-planner-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2.2rem;
+}
+
+.budget-planner-form input {
+  padding: 0.6rem 1rem;
+  border: 1.5px solid #b2f2d6;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+  background: #fff;
+}
+
+.budget-planner-form input:focus {
+  border: 2px solid #27ae60;
+}
+
+.budget-planner-form button[type="submit"] {
+  background: linear-gradient(90deg, #2ecc71 60%, #27ae60 100%);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 30px;
+  padding: 0.6rem 2.2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(46,204,113,0.13);
+  transition: background 0.3s, transform 0.2s;
+}
+
+.budget-planner-form button[type="submit"]:hover {
+  background: linear-gradient(90deg, #27ae60 60%, #2ecc71 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.budget-planner-form button:not([type="submit"]):not(.budget-planner-reset-btn) {
+  background: #f7f7f7;
+  color: #27ae60;
+  border: 1.5px solid #b2f2d6;
+  border-radius: 30px;
+  padding: 0.6rem 1.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-left: 0.2rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.budget-planner-form button:not([type="submit"]):not(.budget-planner-reset-btn):hover {
+  background: #ecf9f1;
+  color: #27ae60;
+}
+
+.budget-planner-reset-btn {
+  background: none;
+  color: #c0392b;
+  border: 1.5px solid #c0392b;
+  border-radius: 30px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-left: 0.2rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.budget-planner-reset-btn:hover {
+  background: #c0392b;
+  color: #fff;
+}
+
+.budget-planner-message {
+  text-align: center;
+  color: #27ae60;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  font-size: 1.1rem;
+}
+
+.budget-planner-summary {
+  margin-bottom: 1.5rem;
+  font-size: 1.15rem;
+  background: #ecf9f1;
+  border-radius: 12px;
+  padding: 1.1rem 1.5rem;
+  box-shadow: 0 2px 8px #b2f2d6;
+  text-align: center;
+}
+
+.budget-planner-summary strong {
+  color: #2e8b57;
+}
+
+.budget-planner-table {
+  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #e0e0e0;
+  margin-bottom: 20px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+
+.budget-planner-table th {
+  background: #ecf9f1;
+  color: #27ae60;
+  padding: 12px 8px;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.budget-planner-table td {
+  padding: 10px 8px;
+  font-size: 1.05rem;
+}
+
+.budget-planner-table tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.budget-planner-table tr:last-child {
+  border-bottom: none;
+}
+
+.budget-planner-edit-btn {
+  background: linear-gradient(90deg, #2ecc71 60%, #27ae60 100%);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 0.4rem 1.2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(46,204,113,0.10);
+  transition: background 0.3s, transform 0.2s;
+}
+
+.budget-planner-edit-btn:hover {
+  background: linear-gradient(90deg, #27ae60 60%, #2ecc71 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.budget-planner-delete-btn {
+  background: none;
+  color: #c0392b;
+  border: 1.5px solid #c0392b;
+  border-radius: 20px;
+  padding: 0.4rem 1.2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.budget-planner-delete-btn:hover {
+  background: #c0392b;
+  color: #fff;
+}
+
+.budget-planner-footer {
+  margin-top: 2.5rem;
+  background: #ecf9f1;
+  border-radius: 12px;
+  padding: 1.1rem 1.5rem;
+  box-shadow: 0 2px 8px #b2f2d6;
+  text-align: center;
+  color: #27ae60;
+  font-size: 1.1rem;
+}
+
+.budget-planner-footer div:last-child {
+  color: #888;
+  font-size: 0.98rem;
+  margin-top: 0.5rem;
+}
+
+.budget-planner-piechart {
+  margin: 0 auto 2rem auto;
+  max-width: 420px;
+  min-height: 320px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem;
+}
+
+@media (max-width: 900px) {
+  .budget-planner-container {
+    padding: 1.2rem 0.2rem;
+  }
+  .budget-planner-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .budget-planner-table th, .budget-planner-table td {
+    padding: 8px 4px;
+  }
+  .budget-planner-hero h2 {
+    font-size: 2.1rem;
+  }
+}
+
+/* Theme-specific overrides for CoinFlow themes */
+body[data-theme='dark'] .budget-planner-container,
+body[data-theme='midnight'] .budget-planner-container,
+body[data-theme='galaxy'] .budget-planner-container,
+body[data-theme='neon'] .budget-planner-container {
+  background: rgba(30, 20, 60, 0.92);
+  color: #fff;
+}
+body[data-theme='aurora'] .budget-planner-container {
+  background: rgba(255,255,255,0.90);
+  color: #23234c;
+}
+body[data-theme='aqua'] .budget-planner-container {
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+}
+
+body[data-theme='dark'] .budget-planner-hero h2,
+body[data-theme='midnight'] .budget-planner-hero h2,
+body[data-theme='galaxy'] .budget-planner-hero h2,
+body[data-theme='neon'] .budget-planner-hero h2 {
+  color: #6a82fb;
+}
+body[data-theme='aurora'] .budget-planner-hero h2 {
+  color: #00c3ff;
+}
+body[data-theme='neon'] .budget-planner-hero h2 {
+  color: #fc5c7d;
+}
+body[data-theme='aqua'] .budget-planner-hero h2 {
+  color: #fff;
+}
+
+body[data-theme='dark'] .budget-planner-income-label,
+body[data-theme='midnight'] .budget-planner-income-label,
+body[data-theme='galaxy'] .budget-planner-income-label,
+body[data-theme='neon'] .budget-planner-income-label {
+  background: #181a23;
+  color: #43cea2;
+  box-shadow: 0 2px 8px #6a82fb33;
+}
+body[data-theme='aurora'] .budget-planner-income-label {
+  background: #fffbe6;
+  color: #00c3ff;
+}
+body[data-theme='neon'] .budget-planner-income-label {
+  background: #23234c;
+  color: #43cea2;
+}
+body[data-theme='aqua'] .budget-planner-income-label {
+  background: #185a9d;
+  color: #fff;
+}
+
+body[data-theme='dark'] .budget-planner-summary,
+body[data-theme='midnight'] .budget-planner-summary,
+body[data-theme='galaxy'] .budget-planner-summary,
+body[data-theme='neon'] .budget-planner-summary {
+  background: #181a23;
+  color: #fff;
+  box-shadow: 0 2px 8px #6a82fb33;
+}
+body[data-theme='aurora'] .budget-planner-summary {
+  background: #fffbe6;
+  color: #23234c;
+}
+body[data-theme='neon'] .budget-planner-summary {
+  background: #23234c;
+  color: #43cea2;
+}
+body[data-theme='aqua'] .budget-planner-summary {
+  background: #185a9d;
+  color: #fff;
+}
+
+body[data-theme='dark'] .budget-planner-summary strong,
+body[data-theme='midnight'] .budget-planner-summary strong,
+body[data-theme='galaxy'] .budget-planner-summary strong,
+body[data-theme='neon'] .budget-planner-summary strong {
+  color: #43cea2;
+}
+body[data-theme='aurora'] .budget-planner-summary strong {
+  color: #00c3ff;
+}
+body[data-theme='neon'] .budget-planner-summary strong {
+  color: #fc5c7d;
+}
+body[data-theme='aqua'] .budget-planner-summary strong {
+  color: #fff;
+}
+
+body[data-theme='dark'] .budget-planner-table,
+body[data-theme='midnight'] .budget-planner-table,
+body[data-theme='galaxy'] .budget-planner-table,
+body[data-theme='neon'] .budget-planner-table {
+  background: #23234c;
+  color: #fff;
+  box-shadow: 0 2px 8px #6a82fb33;
+}
+body[data-theme='aurora'] .budget-planner-table {
+  background: #fffbe6;
+  color: #23234c;
+}
+body[data-theme='neon'] .budget-planner-table {
+  background: #23234c;
+  color: #43cea2;
+}
+body[data-theme='aqua'] .budget-planner-table {
+  background: #185a9d;
+  color: #fff;
+}
+
+body[data-theme='dark'] .budget-planner-table th,
+body[data-theme='midnight'] .budget-planner-table th,
+body[data-theme='galaxy'] .budget-planner-table th,
+body[data-theme='neon'] .budget-planner-table th {
+  background: #181a23;
+  color: #6a82fb;
+}
+body[data-theme='aurora'] .budget-planner-table th {
+  background: #fffbe6;
+  color: #00c3ff;
+}
+body[data-theme='neon'] .budget-planner-table th {
+  background: #23234c;
+  color: #fc5c7d;
+}
+body[data-theme='aqua'] .budget-planner-table th {
+  background: #43cea2;
+  color: #fff;
+}
+
+body[data-theme='dark'] .budget-planner-edit-btn,
+body[data-theme='midnight'] .budget-planner-edit-btn,
+body[data-theme='galaxy'] .budget-planner-edit-btn,
+body[data-theme='neon'] .budget-planner-edit-btn {
+  background: linear-gradient(90deg, #6a82fb 60%, #fc5c7d 100%);
+  color: #fff;
+}
+body[data-theme='aurora'] .budget-planner-edit-btn {
+  background: linear-gradient(90deg, #00c3ff 60%, #ff61a6 100%);
+  color: #23234c;
+}
+body[data-theme='neon'] .budget-planner-edit-btn {
+  background: linear-gradient(90deg, #fc5c7d 60%, #43cea2 100%);
+  color: #fff;
+}
+
+body[data-theme='dark'] .budget-planner-delete-btn,
+body[data-theme='midnight'] .budget-planner-delete-btn,
+body[data-theme='galaxy'] .budget-planner-delete-btn,
+body[data-theme='neon'] .budget-planner-delete-btn {
+  color: #fc5c7d;
+  border-color: #fc5c7d;
+}
+body[data-theme='aurora'] .budget-planner-delete-btn {
+  color: #ff61a6;
+  border-color: #ff61a6;
+}
+body[data-theme='neon'] .budget-planner-delete-btn {
+  color: #fc5c7d;
+  border-color: #fc5c7d;
+}
+body[data-theme='aurora'] .budget-planner-delete-btn:hover {
+  background: #ff61a6;
+  color: #fff;
+}
+body[data-theme='neon'] .budget-planner-delete-btn:hover {
+  background: #fc5c7d;
+  color: #fff;
+}
+
+body[data-theme='dark'] .budget-planner-footer,
+body[data-theme='midnight'] .budget-planner-footer,
+body[data-theme='galaxy'] .budget-planner-footer,
+body[data-theme='neon'] .budget-planner-footer {
+  background: #181a23;
+  color: #43cea2;
+  box-shadow: 0 2px 8px #6a82fb33;
+}
+body[data-theme='aurora'] .budget-planner-footer {
+  background: #fffbe6;
+  color: #00c3ff;
+}
+body[data-theme='neon'] .budget-planner-footer {
+  background: #23234c;
+  color: #43cea2;
+}
+
+body[data-theme='dark'] .budget-planner-piechart,
+body[data-theme='midnight'] .budget-planner-piechart,
+body[data-theme='galaxy'] .budget-planner-piechart,
+body[data-theme='neon'] .budget-planner-piechart {
+  background: #23234c;
+  color: #fff;
+  box-shadow: 0 2px 12px #6a82fb33;
+}
+body[data-theme='aurora'] .budget-planner-piechart {
+  background: #fffbe6;
+  color: #23234c;
+}
+body[data-theme='neon'] .budget-planner-piechart {
+  background: #23234c;
+  color: #43cea2;
+}
+
+body[data-theme='dark'] .budget-planner-message,
+body[data-theme='midnight'] .budget-planner-message,
+body[data-theme='galaxy'] .budget-planner-message,
+body[data-theme='neon'] .budget-planner-message {
+  color: #43cea2;
+}
+body[data-theme='aurora'] .budget-planner-message {
+  color: #00c3ff;
+}
+body[data-theme='neon'] .budget-planner-message {
+  color: #fc5c7d;
+}

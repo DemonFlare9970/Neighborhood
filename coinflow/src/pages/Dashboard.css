@@ -1,0 +1,374 @@
+/* dashboard.css - Modern, vibrant, home.css-inspired */
+body {
+  background: linear-gradient(120deg, #e0ffe8 0%, #f7f7f7 100%);
+  min-height: 100vh;
+}
+.dashboard-container {
+  max-width: 1100px;
+  margin: 3.5rem auto;
+  padding: 0 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+.dashboard-hero {
+  background: #ffffffcc;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(46, 204, 113, 0.10);
+  padding: 2.5rem 2rem 2rem 2rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+.dashboard-hero h1 {
+  color: #27ae60;
+  font-size: 2.7rem;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.dashboard-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.dashboard-summary-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+.dashboard-card {
+  background: #ecf9f1;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(46, 204, 113, 0.10), 0 1.5px 6px rgba(0,0,0,0.04);
+  padding: 2rem 1.5rem;
+  min-width: 180px;
+  flex: 1 1 180px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.dashboard-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 16px 32px rgba(46, 204, 113, 0.13), 0 2px 8px rgba(0,0,0,0.06);
+}
+.dashboard-balance {
+  font-size: 2.1rem;
+  font-weight: bold;
+  color: #2ecc71;
+}
+.dashboard-income {
+  color: #27ae60;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.dashboard-expense {
+  color: #c0392b;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.dashboard-budget {
+  color: #2980b9;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.dashboard-section {
+  margin-bottom: 2.2rem;
+}
+.dashboard-goal-progress {
+  margin-bottom: 1.5rem;
+}
+.dashboard-progress-bar-bg {
+  background: #e0e0e0;
+  border-radius: 8px;
+  height: 16px;
+  width: 100%;
+  margin: 10px 0 4px 0;
+}
+.dashboard-progress-bar {
+  background: linear-gradient(90deg, #2ecc71 60%, #27ae60 100%);
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.4s;
+}
+.dashboard-topcat {
+  background: #f7f7f7;
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  color: #2ecc71;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px #e0e0e0;
+  display: inline-block;
+}
+.dashboard-transactions-section {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #e0e0e0;
+  padding: 1.5rem 1.2rem;
+}
+.dashboard-transactions {
+  list-style: none;
+  padding: 0;
+}
+.dashboard-transactions li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f7f7f7;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px 16px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.dashboard-transactions li:hover {
+  box-shadow: 0 6px 18px #b2f2d6;
+  transform: translateY(-2px) scale(1.01);
+}
+.income {
+  color: #27ae60;
+  font-weight: 700;
+}
+.expense {
+  color: #c0392b;
+  font-weight: 700;
+}
+.dashboard-buttons, .dashboard-actions-section {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+  justify-content: center;
+}
+.dashboard-link {
+  background: linear-gradient(90deg, #2ecc71 60%, #27ae60 100%);
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  box-shadow: 0 2px 8px #e0e0e0;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.dashboard-link:hover {
+  background: linear-gradient(90deg, #27ae60 60%, #2ecc71 100%);
+  box-shadow: 0 4px 16px #b2f2d6;
+}
+.dashboard-tip-section {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+}
+.dashboard-tip-card {
+  background: #ecf9f1;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #b2f2d6;
+  padding: 1.2rem 2rem;
+  font-size: 1.1rem;
+  color: #222;
+  max-width: 400px;
+  text-align: center;
+}
+@media (max-width: 900px) {
+  .dashboard-container {
+    padding: 1rem 0.2rem;
+  }
+  .dashboard-summary-cards {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .dashboard-card {
+    min-width: 0;
+    padding: 1.2rem 0.7rem;
+  }
+  .dashboard-transactions-section {
+    padding: 1rem 0.5rem;
+  }
+  .dashboard-buttons, .dashboard-actions-section {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+}
+body[data-theme='dark'] .dashboard-container,
+body[data-theme='midnight'] .dashboard-container,
+body[data-theme='galaxy'] .dashboard-container,
+body[data-theme='neon'] .dashboard-container {
+  background: rgba(30, 20, 60, 0.92);
+  color: #fff;
+}
+body[data-theme='aurora'] .dashboard-container {
+  background: rgba(255,255,255,0.90);
+  color: #23234c;
+}
+body[data-theme='aqua'] .dashboard-container {
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+}
+
+body[data-theme='dark'] .dashboard-card,
+body[data-theme='midnight'] .dashboard-card,
+body[data-theme='galaxy'] .dashboard-card,
+body[data-theme='neon'] .dashboard-card {
+  background: #181a23;
+  color: #fff;
+  box-shadow: 0 8px 24px #6a82fb33, 0 1.5px 6px #0002;
+}
+body[data-theme='aurora'] .dashboard-card {
+  background: #fffbe6;
+  color: #23234c;
+}
+body[data-theme='aqua'] .dashboard-card {
+  background: #185a9d;
+  color: #fff;
+}
+
+body[data-theme='dark'] .dashboard-hero,
+body[data-theme='midnight'] .dashboard-hero,
+body[data-theme='galaxy'] .dashboard-hero,
+body[data-theme='neon'] .dashboard-hero {
+  background: #23234c;
+  color: #fff;
+}
+body[data-theme='aurora'] .dashboard-hero {
+  background: #e0f7fa;
+  color: #23234c;
+}
+body[data-theme='aqua'] .dashboard-hero {
+  background: #43cea2;
+  color: #fff;
+}
+
+body[data-theme='dark'] .dashboard-link,
+body[data-theme='midnight'] .dashboard-link,
+body[data-theme='galaxy'] .dashboard-link,
+body[data-theme='neon'] .dashboard-link {
+  background: linear-gradient(90deg, #6a82fb 60%, #fc5c7d 100%);
+  color: #fff;
+}
+body[data-theme='aurora'] .dashboard-link {
+  background: linear-gradient(90deg, #00c3ff 60%, #ff61a6 100%);
+  color: #23234c;
+}
+body[data-theme='aqua'] .dashboard-link {
+  background: linear-gradient(90deg, #43cea2 60%, #185a9d 100%);
+  color: #fff;
+}
+
+body[data-theme='dark'] .dashboard-tip-card,
+body[data-theme='midnight'] .dashboard-tip-card,
+body[data-theme='galaxy'] .dashboard-tip-card,
+body[data-theme='neon'] .dashboard-tip-card {
+  background: #23234c;
+  color: #fff;
+}
+body[data-theme='aurora'] .dashboard-tip-card {
+  background: #fffbe6;
+  color: #23234c;
+}
+body[data-theme='aqua'] .dashboard-tip-card {
+  background: #185a9d;
+  color: #fff;
+}
+
+body[data-theme='dark'] .dashboard-topcat,
+body[data-theme='midnight'] .dashboard-topcat,
+body[data-theme='galaxy'] .dashboard-topcat,
+body[data-theme='neon'] .dashboard-topcat {
+  background: #181a23;
+  color: #fff;
+}
+body[data-theme='aurora'] .dashboard-topcat {
+  background: #fffbe6;
+  color: #23234c;
+}
+body[data-theme='aqua'] .dashboard-topcat {
+  background: #43cea2;
+  color: #fff;
+}
+
+body[data-theme='dark'] .dashboard-transactions-section,
+body[data-theme='midnight'] .dashboard-transactions-section,
+body[data-theme='galaxy'] .dashboard-transactions-section,
+body[data-theme='neon'] .dashboard-transactions-section {
+  background: #23234c;
+  color: #fff;
+}
+body[data-theme='aurora'] .dashboard-transactions-section {
+  background: #e0f7fa;
+  color: #23234c;
+}
+body[data-theme='aqua'] .dashboard-transactions-section {
+  background: #43cea2;
+  color: #fff;
+}
+
+body[data-theme='dark'] .dashboard-transactions li,
+body[data-theme='midnight'] .dashboard-transactions li,
+body[data-theme='galaxy'] .dashboard-transactions li,
+body[data-theme='neon'] .dashboard-transactions li {
+  background: #181a23;
+  color: #fff;
+}
+body[data-theme='aurora'] .dashboard-transactions li {
+  background: #fffbe6;
+  color: #23234c;
+}
+body[data-theme='aqua'] .dashboard-transactions li {
+  background: #185a9d;
+  color: #fff;
+}
+
+body[data-theme='dark'] .dashboard-balance,
+body[data-theme='midnight'] .dashboard-balance,
+body[data-theme='galaxy'] .dashboard-balance,
+body[data-theme='neon'] .dashboard-balance {
+  color: #6a82fb;
+}
+body[data-theme='aurora'] .dashboard-balance {
+  color: #00c3ff;
+}
+body[data-theme='aqua'] .dashboard-balance {
+  color: #fff;
+}
+
+body[data-theme='dark'] .dashboard-income,
+body[data-theme='midnight'] .dashboard-income,
+body[data-theme='galaxy'] .dashboard-income,
+body[data-theme='neon'] .dashboard-income {
+  color: #43cea2;
+}
+body[data-theme='aurora'] .dashboard-income {
+  color: #00c3ff;
+}
+body[data-theme='aqua'] .dashboard-income {
+  color: #fff;
+}
+
+body[data-theme='dark'] .dashboard-expense,
+body[data-theme='midnight'] .dashboard-expense,
+body[data-theme='galaxy'] .dashboard-expense,
+body[data-theme='neon'] .dashboard-expense {
+  color: #fc5c7d;
+}
+body[data-theme='aurora'] .dashboard-expense {
+  color: #ff61a6;
+}
+body[data-theme='aqua'] .dashboard-expense {
+  color: #fff;
+}
+
+body[data-theme='dark'] .dashboard-budget,
+body[data-theme='midnight'] .dashboard-budget,
+body[data-theme='galaxy'] .dashboard-budget,
+body[data-theme='neon'] .dashboard-budget {
+  color: #b3b3e6;
+}
+body[data-theme='aurora'] .dashboard-budget {
+  color: #23234c;
+}
+body[data-theme='aqua'] .dashboard-budget {
+  color: #fff;
+}

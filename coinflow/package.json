@@ -1,0 +1,74 @@
+{
+  "name": "coinflow",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:5000",
+  "dependencies": {
+    "@react-oauth/google": "^0.12.2",
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^2.2.0",
+    "chart.js": "^4.4.1",
+    "chartjs": "^0.3.24",
+    "chartjs-adapter-date-fns": "^3.0.0",
+    "compression": "^1.8.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "google-auth-library": "^9.15.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.14.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.10",
+    "react": "^18.3.1",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.6.0",
+    "tailwind": "^4.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "deploy": "npm run build && gh-pages -d build",
+    "server": "nodemon src/server.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "description": "**CoinFlow** is a budgeting and financial education app designed for teens and young adults. It helps you manage your money, track expenses, set savings goals, and learn basic financial skills.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DemonFlare9970/Neighborhood.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DemonFlare9970/Neighborhood/issues"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "react-app-rewired": "^2.2.1",
+    "react-scripts": "^5.0.1"
+  },
+  "homepage": "."
+}
