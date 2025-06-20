@@ -23,3 +23,22 @@
     <p>If you are not redirected, <a href="/Neighborhood/">click here</a>.</p>
   </body>
 </html>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="0; url=/" />
+  </head>
+  <body>
+    <script>
+      // Redirect all requests to index.html for React Router
+      var l = window.location;
+      var path = l.pathname.replace(/^\/+|\/+$/g, '');
+      if (path && path !== 'index.html') {
+        window.location.replace('/#/' + path + l.search + l.hash);
+      } else {
+        window.location.replace('/' + l.search + l.hash);
+      }
+    </script>
+  </body>
+</html>
