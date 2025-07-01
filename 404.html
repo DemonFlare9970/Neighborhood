@@ -10,6 +10,22 @@
     <title>CoinFlow</title>
   </head>
   <body>
+    <script type="text/javascript">
+      // SPA redirect for GitHub Pages
+      (function() {
+        var l = window.location;
+        var pathname = l.pathname;
+        if (pathname.startsWith('/Neighborhood/')) {
+          var redirectPath = pathname.replace('/Neighborhood', '');
+          var search = l.search || '';
+          var hash = l.hash || '';
+          var newUrl = '/Neighborhood/?redirect=' + encodeURIComponent(redirectPath + search + hash);
+          if (!window.location.search.includes('redirect=')) {
+            window.location.replace(newUrl);
+          }
+        }
+      })();
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
