@@ -29,7 +29,7 @@ function CoinFlowNavbar() {
         <NavLink to="/budget-planner" style={navBtnStyle}>Budget Planner</NavLink>
         <NavLink to="/goals" style={navBtnStyle}>Savings Goals</NavLink>
         <NavLink to="/education" style={navBtnStyle}>Education</NavLink>
-        <NavLink to="/settings" style={navBtnStyle}>Settings</NavLink>
+        {/* <NavLink to="/settings" style={navBtnStyle}>Settings</NavLink> */}
         <NavLink to="/customize" style={navBtnStyle}>Customize</NavLink>
       </nav>
     </header>

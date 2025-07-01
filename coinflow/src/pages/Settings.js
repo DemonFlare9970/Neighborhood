@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Settings.css';
+import { t } from '../i18n';
+import { useLanguage } from '../context/LanguageContext';
 
 const defaultSettings = {
   notifications: true,
@@ -7,7 +9,6 @@ const defaultSettings = {
   currency: 'USD',
   language: 'en',
   privacy: 'standard',
-  theme: 'vibrant',
   fontSize: 'medium',
   accessibility: 'standard',
 };
@@ -15,18 +16,23 @@ const defaultSettings = {
 function Settings() {
   const [settings, setSettings] = useState(defaultSettings);
   const [status, setStatus] = useState('');
+  const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
-    // Load settings from localStorage or backend
     const saved = localStorage.getItem('userSettings');
     if (saved) setSettings(JSON.parse(saved));
-    // Optionally fetch from backend here
   }, []);
 
   useEffect(() => {
-    // Save to localStorage on every change
     localStorage.setItem('userSettings', JSON.stringify(settings));
   }, [settings]);
+
+  useEffect(() => {
+    if (settings.language !== language) {
+      setLanguage(settings.language);
+    }
+    // eslint-disable-next-line
+  }, [settings.language]);
 
   const handleChange = e => {
     const { name, type, checked, value } = e.target;
@@ -34,13 +40,15 @@ function Settings() {
       ...s,
       [name]: type === 'checkbox' ? checked : value
     }));
+    if (name === 'language') {
+      setLanguage(value);
+    }
   };
 
   const handleSave = async e => {
     e.preventDefault();
     setStatus('Saving...');
     try {
-      // Optionally: await fetch('/api/user/settings', ...)
       setStatus('Settings saved!');
     } catch {
       setStatus('Failed to save settings.');
@@ -48,21 +56,23 @@ function Settings() {
     setTimeout(() => setStatus(''), 2000);
   };
 
+  const lang = language;
+
   return (
     <div className="settings-container">
-      <h2>Settings</h2>
+      <h2>{t(lang, 'settings.settings')}</h2>
       <form className="settings-form" onSubmit={handleSave}>
         <div className="settings-section">
           <label>
-            Notifications:
+            {t(lang, 'settings.notifications')}
             <input type="checkbox" name="notifications" checked={settings.notifications} onChange={handleChange} />
           </label>
           <label>
-            Email Updates:
+            {t(lang, 'settings.emailUpdates')}
             <input type="checkbox" name="emailUpdates" checked={settings.emailUpdates} onChange={handleChange} />
           </label>
           <label>
-            Currency:
+            {t(lang, 'settings.currency')}
             <select name="currency" value={settings.currency} onChange={handleChange}>
               <option value="USD">USD</option>
               <option value="EUR">EUR</option>
@@ -72,7 +82,7 @@ function Settings() {
             </select>
           </label>
           <label>
-            Language:
+            {t(lang, 'settings.language')}
             <select name="language" value={settings.language} onChange={handleChange}>
               <option value="en">English</option>
               <option value="es">Spanish</option>
@@ -82,7 +92,7 @@ function Settings() {
             </select>
           </label>
           <label>
-            Privacy:
+            {t(lang, 'settings.privacy')}
             <select name="privacy" value={settings.privacy} onChange={handleChange}>
               <option value="standard">Standard</option>
               <option value="strict">Strict</option>
@@ -92,18 +102,7 @@ function Settings() {
         </div>
         <div className="settings-section">
           <label>
-            Theme:
-            <select name="theme" value={settings.theme} onChange={handleChange}>
-              <option value="vibrant">Vibrant</option>
-              <option value="aqua">Aqua</option>
-              <option value="sunset">Sunset</option>
-              <option value="midnight">Midnight</option>
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-            </select>
-          </label>
-          <label>
-            Font Size:
+            {t(lang, 'settings.fontSize')}
             <select name="fontSize" value={settings.fontSize || 'medium'} onChange={handleChange}>
               <option value="small">Small</option>
               <option value="medium">Medium</option>
@@ -112,7 +111,7 @@ function Settings() {
             </select>
           </label>
           <label>
-            Accessibility:
+            {t(lang, 'settings.accessibility')}
             <select name="accessibility" value={settings.accessibility || 'standard'} onChange={handleChange}>
               <option value="standard">Standard</option>
               <option value="high-contrast">High Contrast</option>
@@ -120,8 +119,8 @@ function Settings() {
             </select>
           </label>
         </div>
-        <button type="submit" className="settings-save-btn">Save Settings</button>
-        {status && <div className="settings-status">{status}</div>}
+        <button type="submit" className="settings-save-btn">{t(lang, 'settings.save')}</button>
+        {status && <div className="settings-status">{status === 'Settings saved!' ? t(lang, 'settings.saved') : status === 'Failed to save settings.' ? t(lang, 'settings.failed') : status}</div>}
       </form>
     </div>
   );
