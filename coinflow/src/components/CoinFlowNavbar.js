@@ -1,21 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 function CoinFlowNavbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Check for token in localStorage (or sessionStorage)
-    const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token);
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsLoggedIn(false);
-    navigate('/login');
-  };
+  useEffect(() => {}, []);
 
   return (
     <header style={{
@@ -43,34 +30,22 @@ function CoinFlowNavbar() {
         <NavLink to="/goals" style={navBtnStyle}>Savings Goals</NavLink>
         <NavLink to="/education" style={navBtnStyle}>Education</NavLink>
         <NavLink to="/settings" style={navBtnStyle}>Settings</NavLink>
-        <NavLink to="/community-challenges" style={navBtnStyle}>Community Challenges</NavLink>
-        <NavLink to="/account-profile" style={navBtnStyle}>Account Profile</NavLink>
         <NavLink to="/customize" style={navBtnStyle}>Customize</NavLink>
-        {!isLoggedIn && (
-          <>
-            <NavLink to="/login" style={navBtnStyle}>Login</NavLink>
-            <NavLink to="/register" style={navBtnStyle}>Register</NavLink>
-          </>
-        )}
-        {isLoggedIn && (
-          <button onClick={handleLogout} style={navBtnStyle}>Logout</button>
-        )}
       </nav>
     </header>
   );
 }
 
 const navBtnStyle = {
-  background: 'transparent',
-  border: 'none',
   color: 'white',
-  fontWeight: 500,
-  fontSize: '1rem',
-  marginLeft: '1.2rem',
-  cursor: 'pointer',
-  outline: 'none',
   textDecoration: 'none',
-  transition: 'color 0.2s',
+  margin: '0 0.7rem',
+  fontWeight: 600,
+  fontSize: '1.1rem',
+  padding: '0.3rem 0.9rem',
+  borderRadius: '0.5rem',
+  background: 'rgba(0,0,0,0.08)',
+  transition: 'background 0.2s',
 };
 
 export default CoinFlowNavbar;

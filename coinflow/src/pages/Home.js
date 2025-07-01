@@ -91,13 +91,6 @@ const Home = () => {
             Go to Customize
           </button>
         </div>
-        <div className="feature-card">
-          <div className="feature-icon" role="img" aria-label="community">🤝</div>
-          <h3 className="feature-title">Community Challenges</h3>
-          <p className="feature-description">
-            Join fun savings and budgeting challenges with friends or the CoinFlow community. Level up your money skills together! Compete on the leaderboard and earn XP.
-          </p>
-        </div>
       </section>
       
       <section className="home-news-feed">

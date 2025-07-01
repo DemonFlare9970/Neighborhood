@@ -9,10 +9,6 @@ import Education from './pages/Education';
 import Settings from './pages/Settings';
 import CoinFlowNavbar from './components/CoinFlowNavbar';
 import BudgetPlanner from './pages/BudgetPlanner';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import AccountProfile from './pages/AccountProfile';
-import CommunityChallengesPage from './pages/CommunityChallenges';
 import Customize from './pages/Customize';
 import NotFound from './pages/NotFound';
 
@@ -29,10 +25,6 @@ function App() {
         <Route path="education" element={<Education />} />
         <Route path="settings" element={<Settings />} />
         <Route path="budget-planner" element={<BudgetPlanner />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="account-profile" element={<AccountProfile />} />
-        <Route path="community-challenges" element={<CommunityChallengesPage />} />
         <Route path="customize" element={<Customize />} />
         {/* Show NotFound only for truly unmatched routes */}
         <Route path="*" element={<NotFound />} />
